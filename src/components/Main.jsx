@@ -48,6 +48,7 @@ export default function Main() {
   const [isAddressOpen, setIsAddressOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSize, setActiveSize] = useState(1);
+ 
 
   const addToCart = (product, qty) => {
     setCart(prev => {
@@ -72,7 +73,7 @@ export default function Main() {
   };
 
   return (
-    <div className="min-h-screen bg-stone-50 dark:bg-slate-950 font-sans text-stone-800 dark:text-slate-200 selection:bg-amber-500/30 transition-colors duration-300">
+    <div className="min-h-screen bg-stone-50 dark:bg-slate-950 font-sans text-stone-800 dark:text-slate-200 selection:bg-amber-500/30 ">
 
       {/* Header */}
       <Header cart={cart} setIsAddressOpen={setIsAddressOpen} setIsCartOpen={setIsCartOpen} setIsMenuOpen={setIsMenuOpen} isMenuOpen={isMenuOpen} />
@@ -101,7 +102,7 @@ export default function Main() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="#collection"
-                className="px-8 py-4 bg-blue-500 hover:bg-black text-white rounded-xl font-bold text-lg shadow-lg shadow-amber-900/20 transition-all transform hover:-translate-y-1"
+                className="px-8 py-4 bg-blue-500 hover:bg-black dark:hover:bg-amber-500 text-white rounded-xl font-bold text-lg shadow-lg shadow-amber-900/20 transition-all transform hover:-translate-y-1"
               >
                 सर्व मॉडेल्स बघा
               </a>

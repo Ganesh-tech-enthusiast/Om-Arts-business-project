@@ -2,41 +2,83 @@ import React, { useEffect, useState } from 'react'
 import { MapPin, Truck, Menu, X, Sun, Moon, Lightbulb } from 'lucide-react'
 import logo from '../assets/logo.png'
 
+
 export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen, isMenuOpen, cart }) {
 
   const [darkTheme, setDarkTheme] = useState(false);
   // to enable the dark theme to entire page we have to add the dark class on the root element in html
 
-  useEffect(()=>{
+  const [isActive, setIsActive] = useState(1)
+
+  useEffect(() => {
     if (darkTheme)
-    document.documentElement.classList.add("dark"); 
+      document.documentElement.classList.add("dark");
     else
-    document.documentElement.classList.remove("dark");
-    
-  },[darkTheme])
+      document.documentElement.classList.remove("dark");
+
+  }, [darkTheme])
 
   return (
     <nav className="fixed top-0 w-full z-40 bg-orange-50/90 backdrop-blur-md border-b border-orange-200/50 dark:bg-slate-950/80 dark:border-white/5 transition-transform duration-300">
-      <div className="max-w-7xl mx-auto px-2 sm:px-6">
-        <div className="flex items-center justify-between h-20 md:h-23">
+      <div className="w-full mx-auto sm:px-6 px-3 ">
+        <div className="flex items-center justify-between h-20 md:h-23 md:pr-12 pr-2">
           {/* Logo */}
-          <div className="shrink flex items-center gap-3">
+          <div className="shrink flex items-center">
             <div className="w-12 h-12 md:w-17 md:h-17 bg-linear-to-br m-2 from-amber-500 to-orange-600 dark:from-amber-500 dark:to-orange-800 rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg shadow-orange-500/20 dark:shadow-orange-500/30">
               <img src={logo} />
 
             </div>
             <span className="marathi-yatra  text-2xl md:text-5xl text-slate-900 dark:text-white">
-               ओम कलाकेंद्र 
+              ओम कलाकेंद्र
 
             </span>
           </div>
 
           {/* Desktop Links */}
-          <div className="hidden md:block">
-            <div className="m-10 flex items-baseline space-x-8 text-xl ">
-              <a href="#" className="text-amber-600 dark:text-amber-500 font-medium px-3 py-2 rounded-md transition-colors">Home</a>
-              <a href="#collection" className="text-slate-600 hover:text-amber-600 dark:text-gray-300 dark:hover:text-white px-3 py-2 rounded-md transition-colors">Collection</a>
-              <a href="#about" className="text-slate-600 hover:text-amber-600 dark:text-gray-300 dark:hover:text-white px-3 py-2 rounded-md transition-colors">About Us</a>
+
+          <div className="hidden md:flex h-14 items-center rounded-full px-2 backdrop-blur-xl bg-stone-300/10 border border-gray-500/50 ">
+            <div className="flex items-center gap-1">
+              <a
+                href="#"
+                onClick={() => setIsActive(1)}
+                className={`relative px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 ease-out overflow-hidden ${isActive === 1
+                    ? "text-black dark:text-amber-300 bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/40 shadow-[0_0_20px_rgba(245,158,11,0.3)]"
+                    : "text-gray-600 dark:text-white hover:text-blue-500 dark:hover:text-white hover:bg-white/10 border border-transparent hover:border-white/10"
+                  }`}
+              >
+                {isActive === 1 && (
+                  <span className="absolute inset-0 bg-amber-400/20 blur-xl rounded-full" />
+                )}
+                <span className="relative z-10">Home</span>
+              </a>
+
+              <a
+                href="#collection"
+                onClick={() => setIsActive(2)}
+                className={`relative px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 ease-out overflow-hidden ${isActive === 2
+                    ? "text-black dark:text-amber-300 bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/40 shadow-[0_0_20px_rgba(245,158,11,0.3)]"
+                    :  "text-gray-600 dark:text-white hover:text-blue-500 dark:hover:text-white hover:bg-white/10 border border-transparent hover:border-white/10"
+                  }`}
+              >
+                {isActive === 2 && (
+                  <span className="absolute inset-0 bg-amber-400/20 blur-xl rounded-full" />
+                )}
+                <span className="relative z-10">Collection</span>
+              </a>
+
+              <a
+                href="#about"
+                onClick={() => setIsActive(3)}
+                className={`relative px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 ease-out overflow-hidden ${isActive === 3
+                    ? "text-black dark:text-amber-300 bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/40 shadow-[0_0_20px_rgba(245,158,11,0.3)]"
+                    :  "text-gray-600 dark:text-white hover:text-blue-500 dark:hover:text-white hover:bg-white/10 border border-transparent hover:border-white/10"
+                  }`}
+              >
+                {isActive === 3 && (
+                  <span className="absolute inset-0 bg-amber-400/20 blur-xl rounded-full" />
+                )}
+                <span className="relative z-10">Info</span>
+              </a>
             </div>
           </div>
 
@@ -51,7 +93,7 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
 
             <button
               onClick={() => setIsCartOpen(true)}
-              className="relative p-2 text-slate-700 hover:text-amber-600 dark:text-gray-300 dark:hover:text-white transition-colors bg-white shadow-sm border border-orange-200 dark:bg-slate-800 dark:border-none rounded-full dark:hover:bg-slate-700 flex gap-2 items-center"
+              className="relative p-2 text-slate-700 hover:text-amber-600 dark:text-gray-300 dark:hover:text-white  bg-white shadow-sm border border-orange-200 dark:bg-slate-800 dark:border-none rounded-full dark:hover:bg-slate-700 flex gap-2 items-center"
             >
               <Truck size={20} />
               {cart.length > 0 && (
@@ -63,7 +105,7 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
             </button>
             <button
               onClick={() => setDarkTheme(!darkTheme)}
-              className="p-2 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 transition-colors"
+              className="p-2 rounded-full bg-slate-100 text-slate-700 hover:bg-slate-200 dark:bg-slate-800 dark:text-white dark:hover:bg-slate-700 transition-colors duration-200"
             >
               {darkTheme ? <Sun size={18} /> : <Moon size={18} />}
             </button>
@@ -85,13 +127,19 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
       {isMenuOpen && (
         <div className="md:hidden bg-white/95 dark:bg-slate-900 border-b border-orange-200 dark:border-slate-800 shadow-lg dark:shadow-none">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a href="#" className="text-amber-600 dark:text-amber-500 block px-3 py-2 rounded-md text-base font-medium">Home</a>
-            <a href="#collection" className="text-slate-700 hover:text-amber-600 hover:bg-orange-50 dark:text-gray-300 dark:hover:text-white dark:hover:bg-slate-800 block px-3 py-2 rounded-md text-base font-medium transition-colors">Collection</a>
+            <a href="#" className="text-amber-600 dark:text-amber-500 block px-3 py-2 rounded-md text-base font-medium"
+            >Home</a>
+            <a href="#collection" className="text-slate-700 hover:text-amber-600 hover:bg-orange-50 dark:text-gray-300 dark:hover:text-white dark:hover:bg-slate-800 block px-3 py-2 rounded-md text-base font-medium transition-colors"
+            >Collection</a>
             <a href="#" onClick={() => setIsAddressOpen(true)} className="text-slate-700 hover:text-amber-600 hover:bg-orange-50 dark:text-gray-300 dark:hover:text-white dark:hover:bg-slate-800 block px-3 py-2 rounded-md text-base font-medium transition-colors">Our Address</a>
-            <a href="#" onClick={() => setIsCartOpen(true)} className="text-slate-700 hover:text-amber-600 hover:bg-orange-50 dark:text-gray-300 dark:hover:text-white dark:hover:bg-slate-800 block px-3 py-2 rounded-md text-base font-medium transition-colors">View Orders</a>
+            <a href="#" onClick={() => setIsCartOpen(true)}
+              className="text-slate-700 hover:text-amber-600 hover:bg-orange-50 dark:text-gray-300 dark:hover:text-white dark:hover:bg-slate-800 block px-3 py-2 rounded-md text-base font-medium transition-colors "
+            >View Orders</a>
           </div>
         </div>
       )}
+
     </nav>
+
   )
 }

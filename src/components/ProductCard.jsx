@@ -1,11 +1,13 @@
-import React from 'react'
-import { useState } from 'react';
-import { Minus, Plus, Star, Truck, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 
-export const ProductCard = ({ product, onAddToCart }) => {
+import { useState } from 'react';
+import { Minus, Plus, Truck, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import StatusButton from './StatusButton';
+
+export const ProductCard = ({ product, onAddToCart}) => {
   const [qty, setQty] = useState(1);
   const [showImage, setShowImage] = useState(false);
+   const [OrderedAlready, setIsOrderedAlready] = useState(false);
 
   return (
     <>
@@ -15,7 +17,7 @@ export const ProductCard = ({ product, onAddToCart }) => {
           duration: 0.1,
           ease: "ease"
         }}
-        className="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-stone-200 dark:border-slate-700   transition-all duration-200"
+        className="group bg-white dark:bg-slate-800 rounded-2xl overflow-hidden border border-stone-200 dark:border-slate-700   transition-transform duration-200"
       >
         <div className="relative h-90 overflow-hidden cursor-pointer">
           <img
@@ -23,7 +25,7 @@ export const ProductCard = ({ product, onAddToCart }) => {
             className="w-full h-full object-cover"
             onClick={() => setShowImage(true)}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60 dark:opacity-100" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-60 dark:opacity-100 pointer-events-none" />
           <div className="absolute top-3 right-3 bg-white/95 dark:bg-white text-stone-900 dark:text-black text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1 shadow-sm">
             {product.size}
           </div>
@@ -40,8 +42,11 @@ export const ProductCard = ({ product, onAddToCart }) => {
             <span className="text-2xl font-bold text-stone-900 dark:text-white">₹{product.price}</span>
 
             {/* Integrated Quantity Selector */}
+             <div className='flex gap-2 items-center '>
+            <p className='text-md font-sans font-semibold pb-1'>Select Qty</p>
             <div className="flex items-center bg-stone-100 dark:bg-slate-700 rounded-lg p-1 border border-stone-300 dark:border-slate-600">
               <button
+            
                 onClick={() => setQty(prev => Math.max(1, prev - 1))}
                 className="p-1 text-stone-600 hover:text-stone-900 hover:bg-stone-200 dark:text-gray-400 dark:hover:text-white dark:hover:bg-slate-600 rounded transition-colors"
               >
@@ -55,10 +60,12 @@ export const ProductCard = ({ product, onAddToCart }) => {
               />
               <button
                 onClick={() => setQty(prev => prev + 1)}
+                disabled = {qty == product.maxlimit}
                 className="p-1 text-stone-600 hover:text-stone-900 hover:bg-stone-200 dark:text-gray-400 dark:hover:text-white dark:hover:bg-slate-600 rounded transition-colors"
               >
                 <Plus size={18} />
               </button>
+            </div>
             </div>
           </div>
 
@@ -66,12 +73,14 @@ export const ProductCard = ({ product, onAddToCart }) => {
             <button
               onClick={() => {
                 onAddToCart(product, qty);
+                setIsOrderedAlready(true);
                 // Optional: Visual feedback like a toast could go here
               }}
-              className="flex-1 bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 rounded-xl shadow-lg shadow-amber-900/20 transform active:scale-95 transition-all flex items-center justify-center gap-2"
+              className='w-full'
             >
-              <Truck size={18} />
-              Order Now
+              {/* <Truck size={18} />
+              Order Now */}
+              <StatusButton OrderedAlready={OrderedAlready} qty={qty}  />
             </button>
 
           </div>
