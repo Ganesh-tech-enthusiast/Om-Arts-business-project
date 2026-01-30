@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { CartSidebar } from './CartSidebar';
 import { Size1data, Size2data, Size3data, Size4data } from '../data/data';
 import { Mail, MapPin, Phone, X } from 'lucide-react';
-import { motion, AnimatePresence} from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ProductCard } from './ProductCard';
 import Sizebtn from './Sizebtn';
 import Footer from './Footer';
@@ -23,18 +23,18 @@ const BUSINESS_ADDRESS = {
 const Modal = ({ isOpen, onClose, title, children }) => {
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-stone-900/60 dark:bg-black/70 backdrop-blur-sm">
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         exit={{ opacity: 0, scale: 0.9 }}
-        className="bg-slate-900 border border-amber-600/30 w-full max-w-lg rounded-2xl shadow-2xl overflow-hidden relative"
+        className="bg-white dark:bg-slate-900 border border-amber-200 dark:border-amber-600/30 w-full max-w-lg rounded-2xl shadow-2xl shadow-stone-400/20 dark:shadow-none overflow-hidden relative"
       >
-        <button onClick={onClose} className="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
+        <button onClick={onClose} className="absolute top-4 right-4 text-stone-400 hover:text-stone-700 dark:text-gray-400 dark:hover:text-white transition-colors">
           <X size={24} />
         </button>
         <div className="p-8">
-          {title && <h2 className="text-2xl font-bold text-amber-500 mb-4 font-serif">{title}</h2>}
+          {title && <h2 className="text-2xl font-bold text-amber-600 dark:text-amber-500 mb-4 font-serif">{title}</h2>}
           {children}
         </div>
       </motion.div>
@@ -72,13 +72,14 @@ export default function Main() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 font-sans text-slate-200 selection:bg-amber-500/30">
+    <div className="min-h-screen bg-stone-50 dark:bg-slate-950 font-sans text-stone-800 dark:text-slate-200 selection:bg-amber-500/30 transition-colors duration-300">
 
       {/* Header */}
       <Header cart={cart} setIsAddressOpen={setIsAddressOpen} setIsCartOpen={setIsCartOpen} setIsMenuOpen={setIsMenuOpen} isMenuOpen={isMenuOpen} />
 
       {/* --- Hero Section --- */}
-      <div className="relative bg-slate-900 pt-25 pb-10 lg:pt-30 lg:pb-15 overflow-hidden">
+      <div className="relative bg-white dark:bg-slate-900 pt-25 pb-10 lg:pt-30 lg:pb-15 overflow-hidden background-image">
+    
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
 
           <motion.div
@@ -87,26 +88,26 @@ export default function Main() {
             transition={{ duration: 2 }}
           >
 
-            <span className="inline-block py-1 px-3 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 text-sm font-semibold mb-6 tracking-wider uppercase">
+            <span className="inline-block py-1 px-3 rounded-full bg-amber-100 border border-amber-200 text-amber-800 dark:bg-amber-500/10 dark:border-amber-500/20 dark:text-amber-500 text-sm font-semibold mb-6 tracking-wider uppercase">
               || वक्रतुंड महाकाय सूर्यकोटि समप्रभ निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ||
             </span>
-            <h1 className="text-5xl md:text-7xl font-serif font-bold text-white leading-tight mb-6">
-              गणपती बाप्पाच्या आशीर्वादाने <br />
-              <span className="text-transparent bg-clip-text bg-linear-to-br from-amber-300 to-orange-500 ">Om arts </span>
+            <h1 className="text-5xl md:text-7xl marathi-yatra font-bold text-stone-900 dark:text-white leading-tight mb-6">
+              सर्व प्रकारच्या गणपती मूर्ती <br />
+              
             </h1>
-            <p className="mt-4 max-w-2xl text-xl text-gray-400 mx-auto mb-10">
+            <p className="mt-4 max-w-2xl text-xl text-stone-600 dark:text-gray-400 mx-auto mb-10">
               पीओपि व शाडू मातीच्या गणेश मूर्ती बनविण्यात अग्रगण्य
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="#collection"
-                className="px-8 py-4 bg-amber-600 hover:bg-amber-700 text-white rounded-xl font-bold text-lg shadow-lg shadow-amber-900/40 transition-all transform hover:-translate-y-1"
+                className="px-8 py-4 bg-blue-500 hover:bg-black text-white rounded-xl font-bold text-lg shadow-lg shadow-amber-900/20 transition-all transform hover:-translate-y-1"
               >
                 सर्व मॉडेल्स बघा
               </a>
               <button
                 onClick={() => setIsAddressOpen(true)}
-                className="px-8 py-4 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white rounded-xl font-bold text-lg transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
+                className="px-8 py-4 bg-white hover:bg-stone-50 border border-stone-300 text-stone-800 dark:bg-slate-800 dark:hover:bg-slate-700 dark:border-slate-700 dark:text-white rounded-xl font-bold text-lg transition-transform transform hover:-translate-y-1 flex items-center justify-center gap-2 shadow-sm"
               >
                 <MapPin size={20} /> आमचा  पत्ता
               </button>
@@ -116,19 +117,19 @@ export default function Main() {
       </div>
 
       {/* --- Stat Banner --- */}
-      <div className="bg-slate-900/50 border-y border-white/5 backdrop-blur-sm">
-        <div className="w-full h-20 flex justify-center items-center text-center p-4 text-white">
+      <div className="bg-stone-100/80 border-y border-stone-200 dark:bg-slate-900/50 dark:border-white/5 backdrop-blur-sm">
+        <div className="w-full h-20 flex justify-center items-center text-center p-4 text-stone-800 dark:text-white font-medium">
           आपल्याकडील विविध प्रकारच्या मूर्ती खालील प्रमाणे आहेत. आजच आपली ऑर्डर पूर्ण करा !
         </div>
       </div>
 
       {/* --- Product Collection --- */}
-      <div id="collection" className="py-24 bg-slate-950">
+      <div id="collection" className="py-24 bg-stone-50 dark:bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-white mb-4">आमच्याकडील विविध मूर्ती </h2>
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-stone-900 dark:text-white mb-4">आमच्याकडील विविध मूर्ती </h2>
             <div className="w-24 h-1 bg-amber-600 mx-auto rounded-full" />
-            <p className="mt-4 text-gray-400">आपली ऑर्डर ऑनलाइन स्वीकारली जाईल </p>
+            <p className="mt-4 text-stone-600 dark:text-gray-400">आपली ऑर्डर ऑनलाइन स्वीकारली जाईल </p>
           </div>
           {/* sizes section */}
           <div className="flex w-full justify-evenly mb-8 items-center font-bold">
@@ -190,33 +191,32 @@ export default function Main() {
 
       <Footer />
       {/* address modals and others */}
-      {/* Address Modal */}
-      <Modal isOpen={isAddressOpen} onClose={() => setIsAddressOpen(false)} title="Visit Our Workshop">
-        <div className="space-y-4 text-gray-300 font-light">
+      {/* Address Modal here */}
+      <Modal isOpen={isAddressOpen} onClose={() => setIsAddressOpen(false)} title="आमच्या कार्यशाळेला भेट द्या ..">
+        <div className="space-y-4 text-stone-600 dark:text-gray-300 font-light">
           <div className="flex items-start gap-4 mb-4">
-            <div className="bg-slate-800 p-2 rounded-lg text-amber-500">
+            <div className="bg-stone-100 dark:bg-slate-800 p-2 rounded-lg text-amber-600 dark:text-amber-500">
               <MapPin size={24} />
             </div>
             <div>
-              <h3 className="text-white font-semibold text-lg">{BUSINESS_ADDRESS.shop}</h3>
+              <h3 className="text-stone-900 dark:text-white font-semibold text-lg">{BUSINESS_ADDRESS.shop}</h3>
               <p className="mt-1">{BUSINESS_ADDRESS.street}</p>
               <p>{BUSINESS_ADDRESS.city} - {BUSINESS_ADDRESS.pin}</p>
             </div>
           </div>
 
-          <div className="h-px bg-white/10 w-full my-2" />
+          <div className="h-px bg-stone-200 dark:bg-white/10 w-full my-2" />
 
           <div className="flex items-center gap-4">
-            <Phone size={20} className="text-amber-600" />
-            <span className="text-white">{BUSINESS_ADDRESS.phone}</span>
+            <Phone size={20} className="text-amber-600 dark:text-amber-500" />
+            <span className="text-stone-900 dark:text-white">{BUSINESS_ADDRESS.phone}</span>
           </div>
           <div className="flex items-center gap-4">
-            <Mail size={20} className="text-amber-600" />
-            <span className="text-white">{BUSINESS_ADDRESS.email}</span>
+            <Mail size={20} className="text-amber-600 dark:text-amber-500" />
+            <span className="text-stone-900 dark:text-white">{BUSINESS_ADDRESS.email}</span>
           </div>
         </div>
       </Modal>
-
       {/* Cart Sidebar */}
       <CartSidebar
         isOpen={isCartOpen}
@@ -228,3 +228,4 @@ export default function Main() {
     </div>
   );
 }
+
