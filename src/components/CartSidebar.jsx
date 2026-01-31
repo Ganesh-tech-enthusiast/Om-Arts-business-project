@@ -1,6 +1,6 @@
 import React from 'react'
-import { Truck ,X, Plus, Minus , Check} from 'lucide-react';
-import {motion, AnimatePresence } from 'framer-motion';
+import { Truck, X, Plus, Minus, Check } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export const CartSidebar = ({ isOpen, onClose, cartItems, updateItemQty, removeItem }) => {
   const total = cartItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
@@ -45,33 +45,38 @@ export const CartSidebar = ({ isOpen, onClose, cartItems, updateItemQty, removeI
                   <motion.div
                     layout
                     key={item.id}
-                    className="bg-white dark:bg-slate-800/50 p-3 rounded-xl flex gap-4 border border-stone-200 dark:border-slate-700/50 shadow-sm dark:shadow-none"
+                    className="bg-white dark:bg-slate-800/50 rounded-xl flex flex-col  border border-stone-200 dark:border-slate-700/50 shadow-sm dark:shadow-none"
                   >
-                    <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded-lg" />
-                    <div className="flex-1">
-                      <h4 className="text-stone-900 dark:text-white font-semibold text-sm mb-1">{item.name}</h4>
-                      <p className="text-amber-600 dark:text-amber-500 font-bold">₹{item.price} / unit</p>
-                      <div className="flex items-center gap-3 mt-2">
-                        <div className="flex items-center bg-stone-100 dark:bg-slate-800 rounded border border-stone-300 dark:border-slate-600">
-                          <button
-                            onClick={() => updateItemQty(item.id, item.qty - 1)}
-                            className="px-2 py-1 text-stone-600 hover:text-stone-900 dark:text-gray-400 dark:hover:text-white transition-colors"
-                          >
-                            <Minus size={12} />
-                          </button>
-                          <span className="text-sm font-mono text-stone-900 dark:text-white px-2">{item.qty}</span>
-                          <button
-                            onClick={() => updateItemQty(item.id, item.qty + 1)}
-                            className="px-2 py-1 text-stone-600 hover:text-stone-900 dark:text-gray-400 dark:hover:text-white transition-colors"
-                          >
-                            <Plus size={12} />
-                          </button>
+                    <div className='flex gap-6 p-3'>
+                      <img src={item.image} alt={item.name} className="w-16 h-16 object-cover rounded-lg" />
+                      <div className="flex-1">
+                        <h4 className="text-stone-900 dark:text-white font-semibold text-sm mb-1">{item.name}</h4>
+                        <p className="text-amber-600 dark:text-amber-500 font-bold">₹{item.price} / unit</p>
+                        <div className="flex items-center gap-3 mt-2">
+                          <div className="flex items-center bg-stone-100 dark:bg-slate-800 rounded border border-stone-300 dark:border-slate-600">
+                            <button
+                              onClick={() => updateItemQty(item.id, item.qty - 1)}
+                              className="px-2 py-1 text-stone-600 hover:text-stone-900 dark:text-gray-400 dark:hover:text-white transition-colors"
+                            >
+                              <Minus size={12} />
+                            </button>
+                            <span className="text-sm font-mono text-stone-900 dark:text-white px-2">{item.qty}</span>
+                            <button
+                              onClick={() => updateItemQty(item.id, item.qty + 1)}
+                              className="px-2 py-1 text-stone-600 hover:text-stone-900 dark:text-gray-400 dark:hover:text-white transition-colors"
+                            >
+                              <Plus size={12} />
+                            </button>
+                          </div>
+                          <button onClick={() => removeItem(item.id)} className="text-xs text-red-500 border-1 border-gray-500/30 rounded-xl px-2 pb-1 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 underline">Remove</button>
                         </div>
-                        <button onClick={() => removeItem(item.id)} className="text-xs text-red-500 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 underline">Remove</button>
+                      </div>
+                      <div className="flex flex-col justify-between items-end py-1">
+                        <span className="text-stone-900 dark:text-white font-bold">₹{item.price * item.qty}</span>
                       </div>
                     </div>
-                    <div className="flex flex-col justify-between items-end py-1">
-                      <span className="text-stone-900 dark:text-white font-bold">₹{item.price * item.qty}</span>
+                    <div className='bg-blue-400 text-center rounded-b-xl font-semibold dark:bg-blue-700'>
+                      {item.qty} Unit Ordered
                     </div>
                   </motion.div>
                 ))
@@ -85,10 +90,10 @@ export const CartSidebar = ({ isOpen, onClose, cartItems, updateItemQty, removeI
                   <span className="text-2xl font-bold text-stone-900 dark:text-white">₹{total}</span>
                 </div>
                 <button
-                  onClick={() => alert("Redirecting to WhatsApp Order System...")}
+                  
                   className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl shadow-lg shadow-green-900/20 dark:shadow-lg flex items-center justify-center gap-2 transition-transform active:scale-95"
                 >
-                  <Check size={18} /> Confirm Order on WhatsApp
+                  <Check size={18} /> Confirm Order
                 </button>
               </div>
             )}
