@@ -68,7 +68,7 @@ export const CartSidebar = ({ isOpen, onClose, cartItems, updateItemQty, removeI
                               <Plus size={12} />
                             </button>
                           </div>
-                          <button onClick={() => removeItem(item.id)} className="text-xs text-red-500 border-1 border-gray-500/30 rounded-xl px-2 pb-1 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 underline">Remove</button>
+                          <button onClick={() => removeItem(item.id)} className="text-xs text-red-500 border border-gray-500/30 rounded-xl px-2 pb-1 hover:text-red-600 dark:text-red-400 dark:hover:text-red-300 underline">Remove</button>
                         </div>
                       </div>
                       <div className="flex flex-col justify-between items-end py-1">
