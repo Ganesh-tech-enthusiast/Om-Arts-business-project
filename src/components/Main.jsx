@@ -7,6 +7,10 @@ import { ProductCard } from './ProductCard';
 import Sizebtn from './Sizebtn';
 import Footer from './Footer';
 import Header from './Header';
+import { OrderForm } from './OrderForm';
+import { OrderSummaryTemplate } from './OrderSummaryTemplate';
+import html2pdf from 'html2pdf.js';
+import { createRoot } from 'react-dom/client';
 
 
 const BUSINESS_ADDRESS = {
@@ -48,7 +52,9 @@ export default function Main() {
   const [isAddressOpen, setIsAddressOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSize, setActiveSize] = useState(1);
-
+  const [isOrderFormOpen, setIsOrderFormOpen] = useState(false);
+  const [isOrderSubmitted, setIsOrderSubmitted] = useState(false);
+  const [orderDetails, setOrderDetails] = useState(null);
 
   const addToCart = (product, qty) => {
     setCart(prev => {
@@ -70,6 +76,59 @@ export default function Main() {
 
   const removeItem = (id) => {
     setCart(prev => prev.filter(item => item.id !== id));
+  };
+
+  const handleOrderClick = () => {
+    setIsCartOpen(false);
+    setIsOrderFormOpen(true);
+    setIsOrderSubmitted(false);
+  };
+
+  const handleOrderSubmit = (details) => {
+    setOrderDetails(details);
+    setIsOrderSubmitted(true);
+  };
+
+  const generatePDF = () => {
+    // Create a temporary container for the PDF content
+    const container = document.createElement('div');
+    document.body.appendChild(container);
+
+    // Create root and render the template
+    const root = createRoot(container);
+    const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+    // We need to wait for render to complete, but createRoot is async in nature for effects
+    // flushSync or a timeout is often needed, or just rendering and waiting a tick
+    root.render(
+      <OrderSummaryTemplate
+        cart={cart}
+        orderDetails={orderDetails}
+        total={total}
+      />
+    );
+
+    // Short delay to ensure rendering is done
+    setTimeout(() => {
+      const element = container.firstElementChild;
+      const opt = {
+        margin: [10, 0, 10, 0],  // [top, left, bottom, right]
+        filename: `${orderDetails.name}_Order.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ["css", "legacy"] }
+
+      };
+
+      html2pdf().from(element).set(opt).save().then(() => {
+        // Cleanup
+        setTimeout(() => {
+          root.unmount();
+          document.body.removeChild(container);
+        }, 50);
+      });
+    }, 100);
   };
 
   return (
@@ -225,7 +284,21 @@ export default function Main() {
         cartItems={cart}
         updateItemQty={updateItemQty}
         removeItem={removeItem}
+        onOrderClick={handleOrderClick}
       />
+
+      {/* Order Form Modal */}
+      <Modal
+        isOpen={isOrderFormOpen}
+        onClose={() => setIsOrderFormOpen(false)}
+        title={isOrderSubmitted ? "Order Confirmation" : "Complete Your Order"}
+      >
+        <OrderForm
+          onSubmit={handleOrderSubmit}
+          isSubmitted={isOrderSubmitted}
+          onDownload={generatePDF}
+        />
+      </Modal>
     </div>
   );
 }

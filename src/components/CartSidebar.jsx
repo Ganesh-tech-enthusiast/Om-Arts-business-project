@@ -2,7 +2,7 @@ import React from 'react'
 import { Truck, X, Plus, Minus, Check } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export const CartSidebar = ({ isOpen, onClose, cartItems, updateItemQty, removeItem }) => {
+export const CartSidebar = ({ isOpen, onClose, cartItems, updateItemQty, removeItem, onOrderClick }) => {
   const total = cartItems.reduce((sum, item) => sum + (item.price * item.qty), 0);
 
   return (
@@ -90,7 +90,7 @@ export const CartSidebar = ({ isOpen, onClose, cartItems, updateItemQty, removeI
                   <span className="text-2xl font-bold text-stone-900 dark:text-white">₹{total}</span>
                 </div>
                 <button
-                  
+                  onClick={onOrderClick}
                   className="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 rounded-xl shadow-lg shadow-green-900/20 dark:shadow-lg flex items-center justify-center gap-2 transition-transform active:scale-95"
                 >
                   <Check size={18} /> Confirm Order
