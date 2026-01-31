@@ -4,7 +4,7 @@ export default function Sizebtn({ id, label, activeSize, setActiveSize }) {
   return (
     <>
       <button
-        className={`px-3 py-1 rounded-xl 
+        className={`px-3 py-1 rounded-xl marathi-yatra 
   md:px-6 md:py-2 md:text-xl transition-all duration-200 font-medium
 ${activeSize === id
             ? 'bg-blue-600 text-white border-2 border-blue-600 shadow-md dark:bg-blue-600 dark:text-white'

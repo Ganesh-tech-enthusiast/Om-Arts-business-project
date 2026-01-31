@@ -48,7 +48,7 @@ export default function Main() {
   const [isAddressOpen, setIsAddressOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSize, setActiveSize] = useState(1);
- 
+
 
   const addToCart = (product, qty) => {
     setCart(prev => {
@@ -80,7 +80,7 @@ export default function Main() {
 
       {/* --- Hero Section --- */}
       <div className="relative bg-white dark:bg-slate-900 pt-25 pb-10 lg:pt-30 lg:pb-15 overflow-hidden background-image">
-    
+
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
 
           <motion.div
@@ -94,7 +94,7 @@ export default function Main() {
             </span>
             <h1 className="text-5xl md:text-7xl marathi-yatra font-bold text-stone-900 dark:text-white leading-tight mb-6">
               सर्व प्रकारच्या गणपती मूर्ती <br />
-              
+
             </h1>
             <p className="mt-4 max-w-2xl text-xl text-stone-600 dark:text-gray-400 mx-auto mb-10">
               पीओपि व शाडू मातीच्या गणेश मूर्ती बनविण्यात अग्रगण्य

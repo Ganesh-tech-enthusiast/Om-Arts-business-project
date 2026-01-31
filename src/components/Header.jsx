@@ -42,8 +42,8 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
                 href="#"
                 onClick={() => setIsActive(1)}
                 className={`relative px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 ease-out overflow-hidden ${isActive === 1
-                    ? "text-black dark:text-amber-300 bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/40 shadow-[0_0_20px_rgba(245,158,11,0.3)]"
-                    : "text-gray-600 dark:text-white hover:text-blue-500 dark:hover:text-white hover:bg-white/10 border border-transparent hover:border-white/10"
+                  ? "text-black dark:text-amber-300 bg-linear-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/40 shadow-[0_0_20px_rgba(245,158,11,0.3)]"
+                  : "text-gray-600 dark:text-white hover:text-blue-500 dark:hover:text-white hover:bg-white/10 border border-transparent hover:border-white/10"
                   }`}
               >
                 {isActive === 1 && (
@@ -56,8 +56,8 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
                 href="#collection"
                 onClick={() => setIsActive(2)}
                 className={`relative px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 ease-out overflow-hidden ${isActive === 2
-                    ? "text-black dark:text-amber-300 bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/40 shadow-[0_0_20px_rgba(245,158,11,0.3)]"
-                    :  "text-gray-600 dark:text-white hover:text-blue-500 dark:hover:text-white hover:bg-white/10 border border-transparent hover:border-white/10"
+                  ? "text-black dark:text-amber-300 bg-linear-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/40 shadow-[0_0_20px_rgba(245,158,11,0.3)]"
+                  : "text-gray-600 dark:text-white hover:text-blue-500 dark:hover:text-white hover:bg-white/10 border border-transparent hover:border-white/10"
                   }`}
               >
                 {isActive === 2 && (
@@ -70,8 +70,8 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
                 href="#about"
                 onClick={() => setIsActive(3)}
                 className={`relative px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 ease-out overflow-hidden ${isActive === 3
-                    ? "text-black dark:text-amber-300 bg-gradient-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/40 shadow-[0_0_20px_rgba(245,158,11,0.3)]"
-                    :  "text-gray-600 dark:text-white hover:text-blue-500 dark:hover:text-white hover:bg-white/10 border border-transparent hover:border-white/10"
+                  ? "text-black dark:text-amber-300 bg-linear-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/40 shadow-[0_0_20px_rgba(245,158,11,0.3)]"
+                  : "text-gray-600 dark:text-white hover:text-blue-500 dark:hover:text-white hover:bg-white/10 border border-transparent hover:border-white/10"
                   }`}
               >
                 {isActive === 3 && (
@@ -96,9 +96,9 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
               className="relative p-2 text-slate-700 hover:text-amber-600 dark:text-gray-300 dark:hover:text-white  bg-white shadow-sm border border-orange-200 dark:bg-slate-800 dark:border-none rounded-full dark:hover:bg-slate-700 flex gap-2 items-center"
             >
               <Truck size={20} />
-              {cart.length > 0 && (
+              {cart.length >= 0 && (
                 <span className="absolute top-0 right-0 items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-red-600 rounded-full">
-                  {cart.reduce((acc, item) => acc + item.id, 0)}
+                  {cart.reduce((acc, item) => acc + item.qty, 0)}
                 </span>
               )}
               <span className=' hidden  md:block'>Orders</span>

@@ -5,18 +5,19 @@ import { cn } from "../lib/utils";
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export default function StatusButton({OrderedAlready , qty}) {
+export default function StatusButton({ OrderedAlready, qty, product, addToCart, setIsAlreadyOrdered}) {
   const [status, setStatus] = useState("idle"); // Changed from undefined to "idle"
   const isEnabled = status === "idle" || status === "Order Now";
 
   const changeStatus = async () => {
     if (!isEnabled) return;
 
+
     setStatus("loading");
     await wait(400);
 
     setStatus("Ordered");
-    await wait(3000);
+    await wait(2000);
 
     setStatus("Order Now");
     await wait(1000); // Small delay before resetting to idle
@@ -35,16 +36,16 @@ export default function StatusButton({OrderedAlready , qty}) {
 
   return (
     <button
-      onClick={changeStatus}
+      onClick={()=> {changeStatus(); addToCart(product, qty); setIsAlreadyOrdered(true)}}
       disabled={!isEnabled}
-      className={cn(
+      className={ cn(
         "group relative h-12 w-full overflow-hidden rounded-xl px-6 text-sm font-bold text-white transition-all duration-300 ease-out shadow-md shadow-blue-500/20  disabled:cursor-not-allowed disabled:hover:transform-none",
         getButtonStyles()
       )}
     >
       {/* Shimmer effect */}
       {isEnabled && (
-        <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+        <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-linear-to-r from-transparent via-white/20 to-transparent" />
       )}
 
       <AnimatePresence mode="wait" initial={false}>
@@ -81,7 +82,7 @@ export default function StatusButton({OrderedAlready , qty}) {
           {(status === "idle" || status === "Order Now") && (
             <span className="flex items-center gap-2">
               <Truck size={18} className="opacity-80 group-hover:scale-110 transition-transform" />
-              { OrderedAlready ? "Order More" : "Order Now"}
+              {OrderedAlready ? "Order More" : "Order Now"}
             </span>
           )}
         </motion.span>
