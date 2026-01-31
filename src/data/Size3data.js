@@ -4,7 +4,7 @@ export const Size3data = [
     name: "ganpati A",
     price: 2000,
     category: "POP Murtis",
-    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769840234/sample_r7g4x7.png",
+    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
     size: "1.5 ft",
     maxlimit: 10,
   },
@@ -13,7 +13,7 @@ export const Size3data = [
     name: "ganpati B",
     price: 2300,
     category: "POP Murtis",
-    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769840234/sample_r7g4x7.png",
+    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
     size: "1.75 ft",
     maxlimit: 10,
   },
@@ -22,7 +22,7 @@ export const Size3data = [
     name: "ganpati C",
     price: 2600,
     category: "POP Murtis",
-    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769840234/sample_r7g4x7.png",
+    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
     size: "2 ft",
     maxlimit: 10,
   },
@@ -32,7 +32,7 @@ export const Size3data = [
     price: 2000,
     size: "1.5 ft",
     category: "POP Murtis",
-    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769840234/sample_r7g4x7.png",
+    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
     maxlimit: 10,
   },
   {
@@ -41,7 +41,7 @@ export const Size3data = [
     price: 2300,
     size: "1.75 ft",
     category: "POP Murtis",
-    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769840234/sample_r7g4x7.png",
+    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
     maxlimit: 10,
   },
   {
@@ -50,7 +50,7 @@ export const Size3data = [
     price: 2600,
     size: "2 ft",
     category: "POP Murtis",
-    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769840234/sample_r7g4x7.png",
+    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
     maxlimit: 10,
   },
   {
@@ -59,7 +59,7 @@ export const Size3data = [
     price: 2000,
     size: "1.5 ft",
     category: "POP Murtis",
-    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769840234/sample_r7g4x7.png",
+    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
     maxlimit: 10,
   },
   {
@@ -68,7 +68,7 @@ export const Size3data = [
     price: 2300,
     size: "1.75 ft",
     category: "POP Murtis",
-    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769840234/sample_r7g4x7.png",
+    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
     maxlimit: 10,
   },
   {
@@ -77,7 +77,7 @@ export const Size3data = [
     price: 2600,
     size: "2 ft",
     category: "POP Murtis",
-    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769840234/sample_r7g4x7.png",
+    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
     maxlimit: 10,
   },
   {
@@ -86,7 +86,7 @@ export const Size3data = [
     price: 2000,
     size: "1.5 ft",
     category: "POP Murtis",
-    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769840234/sample_r7g4x7.png",
+    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
     maxlimit: 10,
   },
   {
@@ -95,7 +95,7 @@ export const Size3data = [
     price: 2300,
     size: "1.75 ft",
     category: "POP Murtis",
-    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769840234/sample_r7g4x7.png",
+    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
     maxlimit: 10,
   },
   {
@@ -104,7 +104,7 @@ export const Size3data = [
     price: 2600,
     size: "2 ft",
     category: "POP Murtis",
-    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769840234/sample_r7g4x7.png",
+    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
     maxlimit: 10,
   },
   {
@@ -113,7 +113,7 @@ export const Size3data = [
     price: 2000,
     size: "1.5 ft",
     category: "POP Murtis",
-    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769840234/sample_r7g4x7.png",
+    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
     maxlimit: 10,
   },
   {
@@ -122,7 +122,7 @@ export const Size3data = [
     price: 2300,
     size: "1.75 ft",
     category: "POP Murtis",
-    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769840234/sample_r7g4x7.png",
+    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
     maxlimit: 10,
   },
   {
@@ -131,7 +131,7 @@ export const Size3data = [
     price: 2600,
     size: "2 ft",
     category: "POP Murtis",
-    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769840234/sample_r7g4x7.png",
+    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
     maxlimit: 10,
   },
   {
@@ -140,7 +140,7 @@ export const Size3data = [
     price: 2000,
     size: "1.5 ft",
     category: "POP Murtis",
-    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769840234/sample_r7g4x7.png",
+    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
     maxlimit: 10,
   },
   {
@@ -149,7 +149,7 @@ export const Size3data = [
     price: 2300,
     size: "1.75 ft",
     category: "POP Murtis",
-    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769840234/sample_r7g4x7.png",
+    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
     maxlimit: 10,
   },
   {
@@ -158,7 +158,7 @@ export const Size3data = [
     price: 2600,
     size: "2 ft",
     category: "POP Murtis",
-    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769840234/sample_r7g4x7.png",
+    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
     maxlimit: 10,
   },
   {
@@ -167,7 +167,7 @@ export const Size3data = [
     price: 2000,
     size: "1.5 ft",
     category: "POP Murtis",
-    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769840234/sample_r7g4x7.png",
+    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
     maxlimit: 10,
   },
   {
@@ -176,7 +176,7 @@ export const Size3data = [
     price: 2300,
     size: "1.75 ft",
     category: "POP Murtis",
-    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769840234/sample_r7g4x7.png",
+    image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
     maxlimit: 10,
   },
 ];

@@ -9,7 +9,7 @@ import Footer from './Footer';
 import Header from './Header';
 import { OrderForm } from './OrderForm';
 import { OrderSummaryTemplate } from './OrderSummaryTemplate';
-import html2pdf from 'html2pdf.js';
+// import html2pdf from 'html2pdf.js'; // Removed for lazy loading
 import { createRoot } from 'react-dom/client';
 
 
@@ -130,12 +130,17 @@ export default function Main() {
 
       };
 
-      html2pdf().from(element).set(opt).save().then(() => {
-        // Cleanup
-        setTimeout(() => {
-          root.unmount();
-          document.body.removeChild(container);
-        }, 50);
+      // Dynamic import for code splitting
+      import('html2pdf.js').then((module) => {
+        const html2pdf = module.default;
+
+        html2pdf().from(element).set(opt).save().then(() => {
+          // Cleanup
+          setTimeout(() => {
+            root.unmount();
+            document.body.removeChild(container);
+          }, 100);
+        });
       });
     }, 100);
   };

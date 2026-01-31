@@ -22,6 +22,8 @@ export const ProductCard = ({ product, onAddToCart }) => {
         <div className="relative h-90 overflow-hidden cursor-pointer">
           <img
             src={product.image}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover"
             onClick={() => setShowImage(true)}
           />
@@ -69,7 +71,7 @@ export const ProductCard = ({ product, onAddToCart }) => {
           </div>
 
           <div className="flex gap-2">
-            <StatusButton OrderedAlready={OrderedAlready} qty={qty} product={product} addToCart={onAddToCart} setIsAlreadyOrdered={setIsOrderedAlready}/>
+            <StatusButton OrderedAlready={OrderedAlready} qty={qty} product={product} addToCart={onAddToCart} setIsAlreadyOrdered={setIsOrderedAlready} />
           </div>
         </div>
       </motion.div>
