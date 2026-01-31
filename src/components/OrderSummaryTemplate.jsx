@@ -41,7 +41,7 @@ export const OrderSummaryTemplate = React.forwardRef(({ cart, orderDetails, tota
                     <span className="font-semibold text-[#000000]">Address:</span>
                     <span>{orderDetails?.address}</span>
 
-                    <span className="font-semibold text-[#000000]">Date:</span>
+                    <span className="font-semibold text-[#000000]">Order Date:</span>
                     <span>{new Date().toLocaleDateString()}</span>
                 </div>
             </div>
@@ -52,6 +52,7 @@ export const OrderSummaryTemplate = React.forwardRef(({ cart, orderDetails, tota
                 <table className="w-full text-left border-collapse">
                     <thead>
                         <tr className="bg-[#fef3c7] text-[#92400e]">
+                            <th className="p-3 border-b-2 border-[#fde68a]">No.</th>
                             <th className="p-3 border-b-2 border-[#fde68a]">Product</th>
                             <th className="p-3 border-b-2 border-[#fde68a]">Size</th>
                             <th className="p-3 border-b-2 border-[#fde68a] text-center">Qty</th>
@@ -62,6 +63,7 @@ export const OrderSummaryTemplate = React.forwardRef(({ cart, orderDetails, tota
                     <tbody>
                         {cart.map((item, index) => (
                             <tr key={index} className="border-b border-[#e7e5e4]">
+                                <td className="p-3">{item.id}</td>
                                 <td className="p-3">{item.name}</td>
                                 <td className="p-3">{item.size || "Standard"}</td>
                                 <td className="p-3 text-center">{item.qty}</td>
@@ -72,7 +74,7 @@ export const OrderSummaryTemplate = React.forwardRef(({ cart, orderDetails, tota
                     </tbody>
                     <tfoot>
                         <tr className="bg-[#fafaf9] font-bold text-lg">
-                            <td colSpan="4" className="p-3 text-right border-t-2 border-[#d6d3d1]">Total Amount:</td>
+                            <td colSpan="5" className="p-3 text-right border-t-2 border-[#d6d3d1]">Total Amount:</td>
                             <td className="p-3 text-right border-t-2 border-[#d6d3d1] text-[#b45309]">₹{total}</td>
                         </tr>
                     </tfoot>

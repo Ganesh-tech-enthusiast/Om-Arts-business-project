@@ -58,16 +58,24 @@ export default function Main() {
 
   const addToCart = (product, qty) => {
     setCart(prev => {
-      const existing = prev.find(item => item.id === product.id);
-      if (existing) {
-        return prev.map(item =>
-          item.id === product.id ? { ...item, qty: item.qty + qty } : item
-        );
-      }
-      return [...prev, { ...product, qty }];
-    });
+      let updatedCart;
 
+      const existing = prev.find(item => item.id === product.id);
+
+      if (existing) {
+        updatedCart = prev.map(item =>
+          item.id === product.id
+            ? { ...item, qty: item.qty + qty }
+            : item
+        );
+      } else {
+        updatedCart = [...prev, { ...product, qty }];
+      }
+
+      return updatedCart.sort((a, b) => a.id - b.id);
+    });
   };
+
 
   const updateItemQty = (id, newQty) => {
     if (newQty < 1) return removeItem(id);
@@ -88,6 +96,7 @@ export default function Main() {
     setOrderDetails(details);
     setIsOrderSubmitted(true);
   };
+
 
   const generatePDF = () => {
     // Create a temporary container for the PDF content
