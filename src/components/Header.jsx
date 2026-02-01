@@ -97,7 +97,7 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
             >
               <Truck size={18}/>
               {cart.length >= 0 && (
-                <span className="absolute bottom-4 left-4 md:top-0 md:right-0 items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-red-600 rounded-full">
+                <span className="absolute bottom-4 left-4 md:left-18 md:bottom-5 px-2 py-1 text-xs font-bold text-white transform translate-x-1/4 -translate-y-1/4 bg-red-600 rounded-full">
                   {cart.reduce((acc, item) => acc + item.qty, 0)}
                 </span>
               )}

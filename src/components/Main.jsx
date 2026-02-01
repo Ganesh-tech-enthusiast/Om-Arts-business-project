@@ -11,8 +11,7 @@ import { OrderForm } from './OrderForm';
 import { OrderSummaryTemplate } from './OrderSummaryTemplate';
  import { createRoot} from "react-dom/client";
  import { flushSync } from 'react-dom';
-
-
+import html2pdf from 'html2pdf.js';
 
 const BUSINESS_ADDRESS = {
   shop: "ओम आर्ट्स - गणपती मूर्ती कार्यशाळा ",
@@ -149,8 +148,7 @@ const generatePDF = async () => {
       pagebreak: { mode: ["css", "legacy"] }
     };
 
-    // 3️⃣ Dynamic import (code splitting)
-    const html2pdf = (await import("html2pdf.js")).default;
+   
 
     // 4️⃣ Generate blob (mobile-safe)
     const pdfBlob = await html2pdf()
@@ -343,7 +341,6 @@ const generatePDF = async () => {
           onSubmit={handleOrderSubmit}
           isSubmitted={isOrderSubmitted}
           onDownload={generatePDF}
-          IsdownloadCompleted={IsdownloadCompleted}
         />
       </Modal>
     </div>

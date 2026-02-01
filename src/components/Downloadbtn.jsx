@@ -1,18 +1,18 @@
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, statsBuffer } from "framer-motion";
 import { Check, Download, Loader2, Truck } from "lucide-react";
 import { cn } from "../lib/utils";
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export default function Downloadbtn({IsdownloadCompleted, onDownload}) {
+export default function Downloadbtn({onDownload}) {
   const [status, setStatus] = useState("idle"); // Changed from undefined to "idle"
   
 
   const changeStatus = async () => {
 
     setStatus("processing");
-    await IsdownloadCompleted;
+    await onDownload();
 
     setStatus("downloaded");
     await wait(2000);
@@ -35,7 +35,7 @@ export default function Downloadbtn({IsdownloadCompleted, onDownload}) {
   return (
     <button
       onClick={()=> {changeStatus(); onDownload()}}
-      disabled={IsdownloadCompleted}
+      disabled={status == "processing"}
       className={ cn(
         "group relative h-12 w-full overflow-hidden rounded-xl px-6 text-sm font-bold text-white transition-all duration-300 ease-out shadow-md shadow-blue-500/20  disabled:cursor-not-allowed disabled:hover:transform-none",
         getButtonStyles()
@@ -79,8 +79,8 @@ export default function Downloadbtn({IsdownloadCompleted, onDownload}) {
           {/* Fixed: Check for both "idle" and "Order Now" */}
            {(status === "idle") && (
             <span className="flex items-center gap-2">
-              <Download size={18} className={`opacity-80 group-hover:scale-110 transition-transform ${IsdownloadCompleted && 'cursor-not-allowed'}`}  />
-              {IsdownloadCompleted ? "Download completed" : "Download pdf..."}
+              <Download size={18} className="opacity-80 group-hover:scale-110 transition-transform "  />
+              {status == "downloaded" ? "Download completed" : "Download Order Invoice"}
             </span>
           )} 
           

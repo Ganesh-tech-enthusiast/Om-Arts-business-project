@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Download, Check } from 'lucide-react';
 import Downloadbtn from './Downloadbtn';
 
-export const OrderForm = ({ onSubmit, onDownload, isSubmitted, IsdownloadCompleted }) => {
+export const OrderForm = ({ onSubmit, onDownload, isSubmitted }) => {
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
@@ -38,7 +38,7 @@ export const OrderForm = ({ onSubmit, onDownload, isSubmitted, IsdownloadComplet
                     <Download size={20} />
                     Download Order Invoice
                 </button> */}
-                <Downloadbtn IsdownloadCompleted={IsdownloadCompleted} onDownload={onDownload}/>
+                <Downloadbtn onDownload={onDownload}/>
             </div>
         );
     }
