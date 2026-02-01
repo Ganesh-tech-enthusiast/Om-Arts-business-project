@@ -249,7 +249,7 @@ const generatePDF = async () => {
 
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {activeSize == 1 && Size1data.map((product, index) => (
+            {activeSize == 1 && Size1data.map((product) => (
               <motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -259,7 +259,7 @@ const generatePDF = async () => {
                 <ProductCard product={product} onAddToCart={addToCart} />
               </motion.div>
             ))}
-            {activeSize === 2 && Size2data.map((product, index) => (
+            {activeSize === 2 && Size2data.map((product) => (
               <motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -269,7 +269,7 @@ const generatePDF = async () => {
                 <ProductCard product={product} onAddToCart={addToCart} />
               </motion.div>
             ))}
-            {activeSize === 3 && Size3data.map((product, index) => (
+            {activeSize === 3 && Size3data.map((product) => (
               <motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -279,7 +279,7 @@ const generatePDF = async () => {
                 <ProductCard product={product} onAddToCart={addToCart} />
               </motion.div>
             ))}
-            {activeSize === 4 && Size4data.map((product, index) => (
+            {activeSize === 4 && Size4data.map((product) => (
               <motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}
