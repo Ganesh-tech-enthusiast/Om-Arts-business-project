@@ -1,18 +1,19 @@
 import { useState } from "react";
-import { AnimatePresence, motion, statsBuffer } from "framer-motion";
-import { Check, Download, Loader2, Truck } from "lucide-react";
+import { AnimatePresence, motion} from "framer-motion";
+import { Check, Download, Loader2} from "lucide-react";
 import { cn } from "../lib/utils";
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export default function Downloadbtn({onDownload}) {
-  const [status, setStatus] = useState("idle"); // Changed from undefined to "idle"
+  const [status, setStatus] = useState("idle"); 
   
 
   const changeStatus = async () => {
 
     setStatus("processing");
-    await onDownload();
+    await onDownload;
+    await wait(2000)
 
     setStatus("downloaded");
     await wait(2000);
@@ -24,26 +25,27 @@ export default function Downloadbtn({onDownload}) {
 
   const getButtonStyles = () => {
     if (status === "processing") {
-      return "bg-slate-800 cursor-wait shadow-inner";
+      return "bg-amber-600";
     }
     if (status === "downloaded") {
       return "bg-emerald-300 shadow-emerald-500/30 text-black";
     }
-    return "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 hover:shadow-lg hover:shadow-blue-500/30 hover:-translate-y-0.5";
+    return "bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 text-white hover:to-indigo-700 hover:shadow-lg hover:shadow-blue-500/30 hover:-translate-y-0.5";
   };
 
   return (
     <button
       onClick={()=> {changeStatus(); onDownload()}}
-      disabled={status == "processing"}
+      disabled={status == "processing" || status == "downloaded"
+      }
       className={ cn(
-        "group relative h-12 w-full overflow-hidden rounded-xl px-6 text-sm font-bold text-white transition-all duration-300 ease-out shadow-md shadow-blue-500/20  disabled:cursor-not-allowed disabled:hover:transform-none",
+        "group relative h-12 w-full overflow-hidden rounded-xl px-6 text-sm font-bold  transition-all duration-300 ease-out shadow-md shadow-blue-500/20  disabled:cursor-not-allowed disabled:hover:transform-none",
         getButtonStyles()
       )}
     >
       {/* Shimmer effect */}
       {status === "idle" && (
-        <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-linear-to-r from-transparent via-white/20 to-transparent" />
+        <div className="absolute inset-0 -translate-x-full  group-hover:translate-x-full transition-transform duration-1000 bg-linear-to-r from-transparent via-white/20 to-transparent" />
       )}
 
       <AnimatePresence mode="wait" initial={false}>
@@ -70,7 +72,7 @@ export default function Downloadbtn({onDownload}) {
           )}
 
           {status === "processing" && (
-            <span className="flex items-center gap-2 text-slate-400">
+            <span className="flex items-center gap-2 text-black">
               <Loader2 className="h-4 w-4 animate-spin" />
               <span>Downloading pdf...</span>
             </span>

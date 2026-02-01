@@ -38,7 +38,7 @@ const Modal = ({ isOpen, onClose, title, children }) => {
           <X size={24} />
         </button>
         <div className="p-8">
-          {title && <h2 className="text-2xl font-bold text-amber-600 dark:text-amber-500 mb-4 font-serif">{title}</h2>}
+          {title && <h2 className="text-2xl font-bold text-amber-600 dark:text-amber-500 mb-4 marathi-sans">{title}</h2>}
           {children}
         </div>
       </motion.div>
@@ -333,6 +333,7 @@ const generatePDF = async () => {
 
       {/* Order Form Modal */}
       <Modal
+        
         isOpen={isOrderFormOpen}
         onClose={() => setIsOrderFormOpen(false)}
         title={isOrderSubmitted ? "Order Confirmation" : "Complete Your Order"}

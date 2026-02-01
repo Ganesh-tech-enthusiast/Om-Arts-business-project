@@ -31,13 +31,6 @@ export const OrderForm = ({ onSubmit, onDownload, isSubmitted }) => {
                     </p>
                 </div>
 
-                {/* <button
-                    onClick={onDownload}
-                    className="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-amber-900/20 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
-                >
-                    <Download size={20} />
-                    Download Order Invoice
-                </button> */}
                 <Downloadbtn onDownload={onDownload}/>
             </div>
         );
