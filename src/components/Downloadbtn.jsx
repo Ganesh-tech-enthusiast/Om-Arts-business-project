@@ -13,13 +13,11 @@ export default function Downloadbtn({onDownload}) {
 
     setStatus("processing");
     await onDownload();
-
+    await wait(2000);
     setStatus("downloaded");
     await wait(2000);
 
     setStatus("AllowDownloadAgain"); 
-    // Reset properly so it can be clicked again
-    //enable this status if you want to download pdf again
   };
 
   const getButtonStyles = () => {
@@ -87,7 +85,7 @@ export default function Downloadbtn({onDownload}) {
            {(status === "AllowDownloadAgain") && (
             <span className="flex items-center gap-2">
               <Download size={18} className="opacity-80 group-hover:scale-110 transition-transform "  />
-              {status == "downloaded" ? "Download completed" : "Download Order Invoice Again"}
+              {status == "downloaded" ? "Download completed" : "Download Again"}
             </span>
           )} 
           

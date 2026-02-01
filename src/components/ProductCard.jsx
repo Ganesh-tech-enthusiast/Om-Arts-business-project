@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Minus, Plus, Truck, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import StatusButton from './StatusButton';
@@ -8,6 +8,19 @@ export const ProductCard = ({ product, onAddToCart }) => {
   const [qty, setQty] = useState(1);
   const [showImage, setShowImage] = useState(false);
   const [OrderedAlready, setIsOrderedAlready] = useState(false);
+
+  useEffect(() => {
+  if (showImage) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+
+  return () => {
+    document.body.style.overflow = "auto";
+  };
+}, [showImage]);
+
 
   return (
     <>
@@ -88,7 +101,7 @@ export const ProductCard = ({ product, onAddToCart }) => {
             <div className='relative'>
               <button
                 onClick={() => setShowImage(false)}
-                className="absolute top-2 md:top-4 right-2 md:right-4 bg-white/20 hover:bg-white/30 dark:bg-black/60 dark:hover:bg-black text-white p-2 rounded-full backdrop-blur-sm transition-colors"
+                className="absolute top-2 md:top-4 right-2 md:right-4  bg-black/70 p-2 rounded-full backdrop-blur-sm transition-colors text-white"
               >
                 <X size={24} />
               </button>
