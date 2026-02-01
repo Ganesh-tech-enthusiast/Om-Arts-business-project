@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Download, Check } from 'lucide-react';
+import Downloadbtn from './Downloadbtn';
 
-export const OrderForm = ({ onSubmit, onDownload, isSubmitted }) => {
+export const OrderForm = ({ onSubmit, onDownload, isSubmitted, IsdownloadCompleted }) => {
     const [formData, setFormData] = useState({
         name: '',
         phone: '',
@@ -26,17 +27,18 @@ export const OrderForm = ({ onSubmit, onDownload, isSubmitted }) => {
                 <div className="text-center">
                     <h3 className="text-xl font-bold text-stone-900 dark:text-white mb-2">Order Submitted!</h3>
                     <p className="text-stone-600 dark:text-gray-400 max-w-xs mx-auto">
-                        Thank you for your order. Please download your order summary below.
+                        Thank you for your order. Please download your order invoice below and send us on whatsapp. Then we will contact you.
                     </p>
                 </div>
 
-                <button
+                {/* <button
                     onClick={onDownload}
                     className="w-full bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 px-6 rounded-xl shadow-lg shadow-amber-900/20 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2"
                 >
                     <Download size={20} />
-                    Download Order Summary
-                </button>
+                    Download Order Invoice
+                </button> */}
+                <Downloadbtn IsdownloadCompleted={IsdownloadCompleted} onDownload={onDownload}/>
             </div>
         );
     }

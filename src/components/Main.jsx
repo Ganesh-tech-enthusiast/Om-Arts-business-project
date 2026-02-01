@@ -56,6 +56,7 @@ export default function Main() {
   const [isOrderFormOpen, setIsOrderFormOpen] = useState(false);
   const [isOrderSubmitted, setIsOrderSubmitted] = useState(false);
   const [orderDetails, setOrderDetails] = useState(null);
+  const [IsdownloadCompleted, setIsdownloadCompleted] = useState(false)
 
   const addToCart = (product, qty) => {
     setCart(prev => {
@@ -134,7 +135,7 @@ const generatePDF = async () => {
     const element = container.firstElementChild;
 
     const opt = {
-      margin: [15, 10, 20, 10],
+      margin: [15,0, 15,0],
       image: { type: "jpeg", quality: 0.98 },
       html2canvas: {
         scale: 2,
@@ -162,19 +163,20 @@ const generatePDF = async () => {
 
     const link = document.createElement("a");
     link.href = blobUrl;
-    link.download = `${orderDetails.name}_Order.pdf`;
+    link.download = `${orderDetails.name}-Order.pdf`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
 
     URL.revokeObjectURL(blobUrl);
-
+    setIsdownloadCompleted(true)
   } catch (err) {
     console.error("PDF generation failed:", err);
   } finally {
     // 6️⃣ Clean up safely
     root.unmount();
     document.body.removeChild(container);
+    
   }
 };
 
@@ -341,6 +343,7 @@ const generatePDF = async () => {
           onSubmit={handleOrderSubmit}
           isSubmitted={isOrderSubmitted}
           onDownload={generatePDF}
+          IsdownloadCompleted={IsdownloadCompleted}
         />
       </Modal>
     </div>
