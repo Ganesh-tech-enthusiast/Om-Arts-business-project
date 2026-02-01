@@ -5,6 +5,7 @@ export const Size1data = [
     price: 100,
     category: "POP Murtis",
     image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
+    size: "6 inch",
     maxlimit: 10,
   },
   {
@@ -13,7 +14,7 @@ export const Size1data = [
     price: 200,
     category: "POP Murtis",
     image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
-    size: "7 inch",
+    size: "6 inch",
     maxlimit: 10,
   },
   {
@@ -22,7 +23,7 @@ export const Size1data = [
     price: 300,
     category: "POP Murtis",
     image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
-    size: "9 inch",
+    size: "6 inch",
     maxlimit: 10,
   },
   {
@@ -40,7 +41,7 @@ export const Size1data = [
     price: 200,
     category: "POP Murtis",
     image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
-    size: "7 inch",
+    size: "6 inch",
     maxlimit: 10,
   },
   {
@@ -49,7 +50,7 @@ export const Size1data = [
     price: 300,
     category: "POP Murtis",
     image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
-    size: "9 inch",
+    size: "7 inch",
     maxlimit: 10,
   },
   {
@@ -58,7 +59,7 @@ export const Size1data = [
     price: 100,
     category: "POP Murtis",
     image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
-    size: "6 inch",
+    size: "7 inch",
     maxlimit: 10,
   },
   {
@@ -85,7 +86,7 @@ export const Size1data = [
     price: 100,
     category: "POP Murtis",
     image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
-    size: "6 inch",
+    size: "9 inch",
     maxlimit: 10,
   },
   {
@@ -94,7 +95,7 @@ export const Size1data = [
     price: 200,
     category: "POP Murtis",
     image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
-    size: "7 inch",
+    size: "9 inch",
     maxlimit: 10,
   },
   {
@@ -112,7 +113,7 @@ export const Size1data = [
     price: 100,
     category: "POP Murtis",
     image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
-    size: "6 inch",
+    size: "9 inch",
     maxlimit: 10,
   },
   {
@@ -121,7 +122,7 @@ export const Size1data = [
     price: 200,
     category: "POP Murtis",
     image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
-    size: "7 inch",
+    size: "9 inch",
     maxlimit: 10,
   },
   {
@@ -139,7 +140,7 @@ export const Size1data = [
     price: 100,
     category: "POP Murtis",
     image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
-    size: "6 inch",
+    size: "9 inch",
     maxlimit: 10,
   },
   {
@@ -148,7 +149,7 @@ export const Size1data = [
     price: 200,
     category: "POP Murtis",
     image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
-    size: "7 inch",
+    size: "9 inch",
     maxlimit: 10,
   },
   {
@@ -166,7 +167,7 @@ export const Size1data = [
     price: 100,
     category: "POP Murtis",
     image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
-    size: "6 inch",
+    size: "9 inch",
     maxlimit: 10,
   },
   {
@@ -175,7 +176,7 @@ export const Size1data = [
     price: 200,
     category: "POP Murtis",
     image: "https://res.cloudinary.com/did8mktr3/image/upload/v1769890577/sample_1_ctgpkm.png",
-    size: "7 inch",
+    size: "9 inch",
     maxlimit: 10,
   },
 ];

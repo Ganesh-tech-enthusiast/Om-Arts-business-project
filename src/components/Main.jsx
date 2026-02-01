@@ -9,8 +9,9 @@ import Footer from './Footer';
 import Header from './Header';
 import { OrderForm } from './OrderForm';
 import { OrderSummaryTemplate } from './OrderSummaryTemplate';
-// import html2pdf from 'html2pdf.js'; // Removed for lazy loading
-import { createRoot } from 'react-dom/client';
+ import { createRoot} from "react-dom/client";
+ import { flushSync } from 'react-dom';
+
 
 
 const BUSINESS_ADDRESS = {
@@ -98,17 +99,28 @@ export default function Main() {
   };
 
 
-  const generatePDF = () => {
-    // Create a temporary container for the PDF content
-    const container = document.createElement('div');
-    document.body.appendChild(container);
+const generatePDF = async () => {
+  // 1️⃣ Create isolated container (no layout shift)
+  const container = document.createElement("div");
 
-    // Create root and render the template
-    const root = createRoot(container);
-    const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+  container.style.position = "fixed";
+  container.style.left = "-9999px";
+  container.style.top = "0";
+  container.style.width = "210mm";
+  container.style.visibility = "hidden";
+  container.style.pointerEvents = "none";
 
-    // We need to wait for render to complete, but createRoot is async in nature for effects
-    // flushSync or a timeout is often needed, or just rendering and waiting a tick
+  document.body.appendChild(container);
+
+  const root = createRoot(container);
+
+  const total = cart.reduce(
+    (sum, item) => sum + item.price * item.qty,
+    0
+  );
+
+  // 2️⃣ Render synchronously (no timeout needed)
+  flushSync(() => {
     root.render(
       <OrderSummaryTemplate
         cart={cart}
@@ -116,34 +128,56 @@ export default function Main() {
         total={total}
       />
     );
+  });
 
-    // Short delay to ensure rendering is done
-    setTimeout(() => {
-      const element = container.firstElementChild;
-      const opt = {
-        margin: [10, 0, 10, 0],  // [top, left, bottom, right]
-        filename: `${orderDetails.name}_Order.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-        pagebreak: { mode: ["css", "legacy"] }
+  try {
+    const element = container.firstElementChild;
 
-      };
+    const opt = {
+      margin: [15, 10, 20, 10],
+      image: { type: "jpeg", quality: 0.98 },
+      html2canvas: {
+        scale: 2,
+        useCORS: true
+      },
+      jsPDF: {
+        unit: "mm",
+        format: "a4",
+        orientation: "portrait"
+      },
+      pagebreak: { mode: ["css", "legacy"] }
+    };
 
-      // Dynamic import for code splitting
-      import('html2pdf.js').then((module) => {
-        const html2pdf = module.default;
+    // 3️⃣ Dynamic import (code splitting)
+    const html2pdf = (await import("html2pdf.js")).default;
 
-        html2pdf().from(element).set(opt).save().then(() => {
-          // Cleanup
-          setTimeout(() => {
-            root.unmount();
-            document.body.removeChild(container);
-          }, 100);
-        });
-      });
-    }, 100);
-  };
+    // 4️⃣ Generate blob (mobile-safe)
+    const pdfBlob = await html2pdf()
+      .from(element)
+      .set(opt)
+      .outputPdf("blob");
+
+    // 5️⃣ Manual download (no navigation jump)
+    const blobUrl = URL.createObjectURL(pdfBlob);
+
+    const link = document.createElement("a");
+    link.href = blobUrl;
+    link.download = `${orderDetails.name}_Order.pdf`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    URL.revokeObjectURL(blobUrl);
+
+  } catch (err) {
+    console.error("PDF generation failed:", err);
+  } finally {
+    // 6️⃣ Clean up safely
+    root.unmount();
+    document.body.removeChild(container);
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-stone-50 dark:bg-slate-950 font-sans text-stone-800 dark:text-slate-200 selection:bg-amber-500/30 ">
@@ -220,8 +254,7 @@ export default function Main() {
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: 0.1 }}
               >
                 <ProductCard product={product} onAddToCart={addToCart} />
               </motion.div>
@@ -231,8 +264,7 @@ export default function Main() {
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: 0.1 }}
               >
                 <ProductCard product={product} onAddToCart={addToCart} />
               </motion.div>
@@ -242,8 +274,7 @@ export default function Main() {
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: 0.1 }}
               >
                 <ProductCard product={product} onAddToCart={addToCart} />
               </motion.div>
@@ -253,8 +284,7 @@ export default function Main() {
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                transition={{ delay: 0.1 }}
               >
                 <ProductCard product={product} onAddToCart={addToCart} />
               </motion.div>

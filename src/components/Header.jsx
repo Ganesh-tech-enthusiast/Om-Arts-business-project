@@ -20,7 +20,7 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
 
   return (
     <nav className="fixed top-0 w-full z-40 bg-orange-50/90 backdrop-blur-md border-b border-orange-200/50 dark:bg-slate-950/80 dark:border-white/5 transition-transform duration-300">
-      <div className="w-full mx-auto sm:px-6 px-3 ">
+      <div className="w-full mx-auto sm:px-6 md:px-3">
         <div className="flex items-center justify-between h-20 md:h-23 md:pr-12 pr-2">
           {/* Logo */}
           <div className="shrink flex items-center">
@@ -95,9 +95,9 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
               onClick={() => setIsCartOpen(true)}
               className="relative p-2 text-slate-700 hover:text-amber-600 dark:text-gray-300 dark:hover:text-white  bg-white shadow-sm border border-orange-200 dark:bg-slate-800 dark:border-none rounded-full dark:hover:bg-slate-700 flex gap-2 items-center"
             >
-              <Truck size={20} />
+              <Truck size={18}/>
               {cart.length >= 0 && (
-                <span className="absolute top-0 right-0 items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-red-600 rounded-full">
+                <span className="absolute bottom-4 left-4 items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/4 -translate-y-1/4 bg-red-600 rounded-full">
                   {cart.reduce((acc, item) => acc + item.qty, 0)}
                 </span>
               )}
