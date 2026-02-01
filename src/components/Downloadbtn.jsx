@@ -12,13 +12,12 @@ export default function Downloadbtn({onDownload}) {
   const changeStatus = async () => {
 
     setStatus("processing");
-    await onDownload;
-    await wait(2000)
+    await onDownload();
 
     setStatus("downloaded");
     await wait(2000);
 
-    // setStatus("idle"); 
+    setStatus("AllowDownloadAgain"); 
     // Reset properly so it can be clicked again
     //enable this status if you want to download pdf again
   };
@@ -35,9 +34,8 @@ export default function Downloadbtn({onDownload}) {
 
   return (
     <button
-      onClick={()=> {changeStatus(); onDownload()}}
-      disabled={status == "processing" || status == "downloaded"
-      }
+      onClick={changeStatus}
+      disabled={status == "processing"}
       className={ cn(
         "group relative h-12 w-full overflow-hidden rounded-xl px-6 text-sm font-bold  transition-all duration-300 ease-out shadow-md shadow-blue-500/20  disabled:cursor-not-allowed disabled:hover:transform-none",
         getButtonStyles()
@@ -56,7 +54,14 @@ export default function Downloadbtn({onDownload}) {
           exit={{ opacity: 0, y: 15, filter: "blur(4px)" }}
           transition={{ duration: 0.15, ease: "easeOut" }}
           className="flex items-center justify-center gap-2"
-        >
+          >
+          {(status === "idle") && (
+             <span className="flex items-center gap-2">
+               <Download size={18} className="opacity-80 group-hover:scale-110 transition-transform "  />
+               Download Order Invoice
+             </span>
+           )} 
+           
           {status === "downloaded" && (
             <motion.span
               className="flex items-center gap-2"
@@ -78,11 +83,11 @@ export default function Downloadbtn({onDownload}) {
             </span>
           )}
 
-          {/* Fixed: Check for both "idle" and "Order Now" */}
-           {(status === "idle") && (
+
+           {(status === "AllowDownloadAgain") && (
             <span className="flex items-center gap-2">
               <Download size={18} className="opacity-80 group-hover:scale-110 transition-transform "  />
-              {status == "downloaded" ? "Download completed" : "Download Order Invoice"}
+              {status == "downloaded" ? "Download completed" : "Download Order Invoice Again"}
             </span>
           )} 
           
