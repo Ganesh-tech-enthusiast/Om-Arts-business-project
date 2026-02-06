@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { CartSidebar } from './CartSidebar';
 import { Size1data, Size2data, Size3data, Size4data } from '../data/data';
 import { Mail, MapPin, Phone, X } from 'lucide-react';
@@ -9,8 +9,8 @@ import Footer from './Footer';
 import Header from './Header';
 import { OrderForm } from './OrderForm';
 import { OrderSummaryTemplate } from './OrderSummaryTemplate';
- import { createRoot} from "react-dom/client";
- import { flushSync } from 'react-dom';
+import { createRoot } from "react-dom/client";
+import { flushSync } from 'react-dom';
 import html2pdf from 'html2pdf.js';
 
 const BUSINESS_ADDRESS = {
@@ -21,8 +21,6 @@ const BUSINESS_ADDRESS = {
   phone: "+91 9822397846 , +91 8010072112",
   email: "ganeshwakchaure801@gmail.com"
 };
-
-// --- Components ---
 
 const Modal = ({ isOpen, onClose, title, children }) => {
   if (!isOpen) return null;
@@ -57,7 +55,18 @@ export default function Main() {
   const [orderDetails, setOrderDetails] = useState(null);
   const [IsdownloadCompleted, setIsdownloadCompleted] = useState(false)
 
-  
+useEffect(() => {
+  if (isAddressOpen) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+
+  return () => {
+    document.body.style.overflow = "auto";
+  };
+}, [isAddressOpen]);
+
   const addToCart = (product, qty) => {
     setCart(prev => {
       let updatedCart;
@@ -100,84 +109,84 @@ export default function Main() {
   };
 
 
-const generatePDF = async () => {
-  // 1️⃣ Create isolated container (no layout shift)
-  const container = document.createElement("div");
+  const generatePDF = async () => {
+    // 1️⃣ Create isolated container (no layout shift)
+    const container = document.createElement("div");
 
-  container.style.position = "fixed";
-  container.style.left = "-9999px";
-  container.style.top = "0";
-  container.style.width = "210mm";
-  container.style.visibility = "hidden";
-  container.style.pointerEvents = "none";
+    container.style.position = "fixed";
+    container.style.left = "-9999px";
+    container.style.top = "0";
+    container.style.width = "210mm";
+    container.style.visibility = "hidden";
+    container.style.pointerEvents = "none";
 
-  document.body.appendChild(container);
+    document.body.appendChild(container);
 
-  const root = createRoot(container);
+    const root = createRoot(container);
 
-  const total = cart.reduce(
-    (sum, item) => sum + item.price * item.qty,
-    0
-  );
-
-  // 2️⃣ Render synchronously (no timeout needed)
-  flushSync(() => {
-    root.render(
-      <OrderSummaryTemplate
-        cart={cart}
-        orderDetails={orderDetails}
-        total={total}
-      />
+    const total = cart.reduce(
+      (sum, item) => sum + item.price * item.qty,
+      0
     );
-  });
 
-  try {
-    const element = container.firstElementChild;
+    // 2️⃣ Render synchronously (no timeout needed)
+    flushSync(() => {
+      root.render(
+        <OrderSummaryTemplate
+          cart={cart}
+          orderDetails={orderDetails}
+          total={total}
+        />
+      );
+    });
 
-    const opt = {
-      margin: [15,0, 15,0],
-      image: { type: "jpeg", quality: 0.98 },
-      html2canvas: {
-        scale: 2,
-        useCORS: true
-      },
-      jsPDF: {
-        unit: "mm",
-        format: "a4",
-        orientation: "portrait"
-      },
-      pagebreak: { mode: ["css", "legacy"] }
-    };
+    try {
+      const element = container.firstElementChild;
 
-   
+      const opt = {
+        margin: [15, 0, 15, 0],
+        image: { type: "jpeg", quality: 0.98 },
+        html2canvas: {
+          scale: 2,
+          useCORS: true
+        },
+        jsPDF: {
+          unit: "mm",
+          format: "a4",
+          orientation: "portrait"
+        },
+        pagebreak: { mode: ["css", "legacy"] }
+      };
 
-    // 4️⃣ Generate blob (mobile-safe)
-    const pdfBlob = await html2pdf()
-      .from(element)
-      .set(opt)
-      .outputPdf("blob");
 
-    // 5️⃣ Manual download (no navigation jump)
-    const blobUrl = URL.createObjectURL(pdfBlob);
 
-    const link = document.createElement("a");
-    link.href = blobUrl;
-    link.download = `${orderDetails.name}-Order.pdf`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+      // 4️⃣ Generate blob (mobile-safe)
+      const pdfBlob = await html2pdf()
+        .from(element)
+        .set(opt)
+        .outputPdf("blob");
 
-    URL.revokeObjectURL(blobUrl);
-    setIsdownloadCompleted(true)
-  } catch (err) {
-    console.error("PDF generation failed:", err);
-  } finally {
-    // 6️⃣ Clean up safely
-    root.unmount();
-    document.body.removeChild(container);
-    
-  }
-};
+      // 5️⃣ Manual download (no navigation jump)
+      const blobUrl = URL.createObjectURL(pdfBlob);
+
+      const link = document.createElement("a");
+      link.href = blobUrl;
+      link.download = `${orderDetails.name}-Order.pdf`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      URL.revokeObjectURL(blobUrl);
+      setIsdownloadCompleted(true)
+    } catch (err) {
+      console.error("PDF generation failed:", err);
+    } finally {
+      // 6️⃣ Clean up safely
+      root.unmount();
+      document.body.removeChild(container);
+
+    }
+  };
 
 
   return (
@@ -185,9 +194,14 @@ const generatePDF = async () => {
 
       {/* Header */}
       <Header cart={cart} setIsAddressOpen={setIsAddressOpen} setIsCartOpen={setIsCartOpen} setIsMenuOpen={setIsMenuOpen} isMenuOpen={isMenuOpen} />
+      <div className='bg-white dark:bg-slate-900 dark:text-white w-full text-md  font-bold sans text-black'>
+        <h1 className="animate-scroll [animation-duration:6s] md:[animation-duration:20s] py-4 mt-20 md:mt-23">
+          2026 साठी बूकिंग सुरू झाली आहे !
+        </h1>
 
+      </div>
       {/* --- Hero Section --- */}
-      <div className="relative bg-white dark:bg-slate-900 pt-25 pb-10 lg:pt-30 lg:pb-15 overflow-hidden background-image">
+      <div className="relative bg-white dark:bg-slate-900  pb-10 lg:pb-15">
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center text-center">
 
@@ -334,7 +348,7 @@ const generatePDF = async () => {
 
       {/* Order Form Modal */}
       <Modal
-        
+
         isOpen={isOrderFormOpen}
         onClose={() => setIsOrderFormOpen(false)}
         title={isOrderSubmitted ? "Order Confirmation" : "Complete Your Order"}

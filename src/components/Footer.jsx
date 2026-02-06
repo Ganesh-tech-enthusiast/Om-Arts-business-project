@@ -1,6 +1,7 @@
 import React from 'react'
 import logo from '../assets/logo.png'
 import { Phone } from 'lucide-react'
+import { FaWhatsapp } from 'react-icons/fa'
 export default function Footer() {
   return (
     
@@ -34,6 +35,11 @@ export default function Footer() {
                 <div className="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-700 dark:text-green-500 border border-green-200 dark:border-green-900 hover:bg-green-600 hover:text-white transition-all">
                   <Phone size={18} />
                 </div>
+                <a className="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-700 dark:text-green-500 border border-green-200 dark:border-green-900 hover:bg-green-600 hover:text-white transition-all"
+                href='https://wa.me/919822397846'>
+                  <FaWhatsapp size={18} />
+                </a>
+               
                 <div className='flex flex-col gap-1 text-stone-800 dark:text-gray-200'>
                   <h1 className="font-medium">प्रो. सोन्याबापू शिवाजी वाकचौरे</h1>
                   <h1 className="text-stone-600 dark:text-gray-400">+91 9822397846 </h1>
@@ -48,6 +54,7 @@ export default function Footer() {
             </p>
           </div>
         </div>
+
       </footer>
 
   )
