@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CartSidebar } from './CartSidebar';
 import { Size1data, Size2data, Size3data, Size4data } from '../data/data';
 import { Mail, MapPin, Phone, X } from 'lucide-react';
@@ -53,19 +53,18 @@ export default function Main() {
   const [isOrderFormOpen, setIsOrderFormOpen] = useState(false);
   const [isOrderSubmitted, setIsOrderSubmitted] = useState(false);
   const [orderDetails, setOrderDetails] = useState(null);
-  // const [IsdownloadCompleted, setIsdownloadCompleted] = useState(false)
 
-useEffect(() => {
-  if (isAddressOpen || isOrderFormOpen) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "auto";
-  }
+  useEffect(() => {
+    if (isAddressOpen || isOrderFormOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
 
-  return () => {
-    document.body.style.overflow = "auto";
-  };
-}, [isAddressOpen,isOrderFormOpen]);
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isAddressOpen, isOrderFormOpen]);
 
   const addToCart = (product, qty) => {
     setCart(prev => {
@@ -166,18 +165,32 @@ useEffect(() => {
         .set(opt)
         .outputPdf("blob");
 
-      // 5️⃣ Manual download (no navigation jump)
+      // 5️⃣ Mobile + Desktop friendly download
       const blobUrl = URL.createObjectURL(pdfBlob);
 
-      const link = document.createElement("a");
-      link.href = blobUrl;
-      link.download = `${orderDetails.name}-Order.pdf`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
+      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+      if (isMobile) {
+
+        // Open preview on mobile
+        window.open(blobUrl, "_blank");
+
+      } else {
+
+        // Direct download on desktop
+        const link = document.createElement("a");
+        link.href = blobUrl;
+        link.download = `${orderDetails.name}-Order.pdf`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+
+      }
 
       URL.revokeObjectURL(blobUrl);
-      setIsdownloadCompleted(true)
+
+      // setIsdownloadCompleted(true);
+
     } catch (err) {
       console.error("PDF generation failed:", err);
     } finally {
