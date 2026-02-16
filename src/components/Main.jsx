@@ -177,7 +177,7 @@ useEffect(() => {
       document.body.removeChild(link);
 
       URL.revokeObjectURL(blobUrl);
-      setIsdownloadCompleted(true)
+      // setIsdownloadCompleted(true)
     } catch (err) {
       console.error("PDF generation failed:", err);
     } finally {
