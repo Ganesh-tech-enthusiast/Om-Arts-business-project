@@ -13,7 +13,6 @@ export default function Downloadbtn({onDownload}) {
 
     setStatus("processing");
     await onDownload();
-    await wait(2000);
     setStatus("downloaded");
     await wait(2000);
 
@@ -65,7 +64,7 @@ export default function Downloadbtn({onDownload}) {
               className="flex items-center gap-2"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              transition={{ delay: 0.1, type: "spring", stiffness: 500 }}
+              transition={{ delay: 0.1, type: "spring", stiffness: 100 }}
             >
               <div className="bg-white/20 p-1 rounded-full">
                 <Check size={16} strokeWidth={3} />

@@ -62,7 +62,7 @@ export default function StatusButton({ OrderedAlready, qty, product, addToCart, 
               className="flex items-center gap-2"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
-              transition={{ delay: 0.1, type: "spring", stiffness: 500 }}
+              transition={{ delay: 0.1, type:"spring", stiffness: 200 }}
             >
               <div className="bg-white/20 p-1 rounded-full">
                 <Check size={16} strokeWidth={3} />

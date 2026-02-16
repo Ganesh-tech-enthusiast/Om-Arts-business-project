@@ -66,19 +66,7 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
                 <span className="relative z-10">Collection</span>
               </a>
 
-              <a
-                href="#about"
-                onClick={() => setIsActive(3)}
-                className={`relative px-6 py-2.5 rounded-full text-sm font-semibold tracking-wide transition-all duration-300 ease-out overflow-hidden ${isActive === 3
-                  ? "text-black dark:text-amber-300 bg-linear-to-r from-amber-500/20 to-orange-500/20 border border-amber-500/40 shadow-[0_0_20px_rgba(245,158,11,0.3)]"
-                  : "text-gray-600 dark:text-white hover:text-blue-500 dark:hover:text-white hover:bg-white/10 border border-transparent hover:border-white/10"
-                  }`}
-              >
-                {isActive === 3 && (
-                  <span className="absolute inset-0 bg-amber-400/20 blur-xl rounded-full" />
-                )}
-                <span className="relative z-10">Info</span>
-              </a>
+             
             </div>
           </div>
 

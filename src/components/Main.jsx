@@ -53,10 +53,10 @@ export default function Main() {
   const [isOrderFormOpen, setIsOrderFormOpen] = useState(false);
   const [isOrderSubmitted, setIsOrderSubmitted] = useState(false);
   const [orderDetails, setOrderDetails] = useState(null);
-  const [IsdownloadCompleted, setIsdownloadCompleted] = useState(false)
+  // const [IsdownloadCompleted, setIsdownloadCompleted] = useState(false)
 
 useEffect(() => {
-  if (isAddressOpen) {
+  if (isAddressOpen || isOrderFormOpen) {
     document.body.style.overflow = "hidden";
   } else {
     document.body.style.overflow = "auto";
@@ -65,7 +65,7 @@ useEffect(() => {
   return () => {
     document.body.style.overflow = "auto";
   };
-}, [isAddressOpen]);
+}, [isAddressOpen,isOrderFormOpen]);
 
   const addToCart = (product, qty) => {
     setCart(prev => {
@@ -194,8 +194,8 @@ useEffect(() => {
 
       {/* Header */}
       <Header cart={cart} setIsAddressOpen={setIsAddressOpen} setIsCartOpen={setIsCartOpen} setIsMenuOpen={setIsMenuOpen} isMenuOpen={isMenuOpen} />
-      <div className='bg-white dark:bg-slate-900 dark:text-white w-full text-md  font-bold sans text-black'>
-        <h1 className="animate-scroll [animation-duration:6s] md:[animation-duration:20s] py-4 mt-20 md:mt-23">
+      <div className='bg-white dark:bg-slate-900 dark:text-white text-md  font-bold sans text-black overflow-hidden'>
+        <h1 className="animate-scroll [animation-duration:6s] md:[animation-duration:20s] py-4 mt-20 md:mt-23 text-nowrap">
           2026 साठी बूकिंग सुरू झाली आहे !
         </h1>
 
