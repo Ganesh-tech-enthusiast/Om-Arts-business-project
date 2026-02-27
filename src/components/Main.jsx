@@ -307,6 +307,13 @@ useEffect(() => {
           </div>
         </div>
       </div>
+      {/* sizes section */}
+          <div className="flex w-full justify-evenly mb-8 items-center font-bold">
+            <a href="#collection"><Sizebtn id={1} label="6/9 इंच " activeSize={activeSize} setActiveSize={setActiveSize}/></a>
+            <a href="#collection"><Sizebtn id={2} label="1 फुट" activeSize={activeSize} setActiveSize={setActiveSize} /></a>
+            <a href="#collection"><Sizebtn id={3} label="1.25 / 1.5 फुट " activeSize={activeSize} setActiveSize={setActiveSize} /></a>
+            <a href="#collection"><Sizebtn id={4} label="2 फुट+" activeSize={activeSize} setActiveSize={setActiveSize} /></a>
+          </div>
 
       <Footer />
       {/* address modals and others */}
