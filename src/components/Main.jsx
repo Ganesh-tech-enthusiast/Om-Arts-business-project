@@ -318,8 +318,8 @@ useEffect(() => {
       <Footer />
       {/* address modals and others */}
       {/* Address Modal here */}
-      <Modal isOpen={isAddressOpen} onClose={() => setIsAddressOpen(false)} title="आमच्या कार्यशाळेला भेट द्या ..">
-        <div className="space-y-4 text-stone-600 dark:text-gray-300 font-light">
+      <Modal isOpen={isAddressOpen} onClose={() => setIsAddressOpen(false)} title="आमच्या कार्यशाळेला भेट द्या ">
+       <div className="space-y-4 text-stone-600 dark:text-gray-300 font-light">
           <div className="flex items-start gap-4 mb-4">
             <div className="bg-stone-100 dark:bg-slate-800 p-2 rounded-lg text-amber-600 dark:text-amber-500">
               <MapPin size={24} />

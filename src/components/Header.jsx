@@ -5,7 +5,7 @@ import logo from '../assets/logo.png'
 
 export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen, isMenuOpen, cart }) {
 
-  const [darkTheme, setDarkTheme] = useState(false);
+  const [darkTheme, setDarkTheme] = useState(true );
   // to enable the dark theme to entire page we have to add the dark class on the root element in html
 
   const [isActive, setIsActive] = useState(1)
@@ -29,8 +29,7 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
 
             </div>
             <span className="marathi-yatra  text-2xl md:text-5xl text-slate-900 dark:text-white">
-              ओम कलाकेंद्र
-
+              ओम कलाकेंद्र 
             </span>
           </div>
 
