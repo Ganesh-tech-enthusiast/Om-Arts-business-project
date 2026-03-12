@@ -41,9 +41,9 @@ export default function Footer() {
                 </a>
                
                 <div className='flex flex-col gap-1 text-stone-800 dark:text-gray-200'>
-                  <h1 className="font-medium">प्रो. सोन्याबापू शिवाजी वाकचौरे</h1>
-                  <h1 className="text-stone-600 dark:text-gray-400">+91 9822397846 </h1>
-                  <h1 className="text-stone-600 dark:text-gray-400">+91 8010072112 </h1>
+                  <p className="font-medium">प्रो. सोन्याबापू शिवाजी वाकचौरे</p>
+                  <p className="text-stone-600 dark:text-gray-400">+91 9822397846 </p>
+                  <p className="text-stone-600 dark:text-gray-400">+91 8010072112 </p>
                 </div>
               </div>
             </div>

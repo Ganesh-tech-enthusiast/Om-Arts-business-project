@@ -29,7 +29,7 @@ export default function Header({ setIsAddressOpen, setIsCartOpen, setIsMenuOpen,
 
             </div>
             <span className="marathi-yatra  text-2xl md:text-5xl text-slate-900 dark:text-white">
-              ओम कलाकेंद्र 
+              Om Arts
             </span>
           </div>
 
