@@ -11,7 +11,6 @@ import { OrderForm } from './OrderForm';
 import { OrderSummaryTemplate } from './OrderSummaryTemplate';
 import { createRoot } from "react-dom/client";
 import { flushSync } from 'react-dom';
-import html2pdf from 'html2pdf.js';
 
 const BUSINESS_ADDRESS = {
   shop: "ओम आर्ट्स - गणपती मूर्ती कार्यशाळा ",
@@ -112,6 +111,7 @@ export default function Main() {
 
   const generatePDF = async () => {
     // 1️⃣ Create isolated container (no layout shift)
+    const html2pdf = (await import("html2pdf.js")).default;
     const container = document.createElement("div");
 
     container.style.position = "fixed";
