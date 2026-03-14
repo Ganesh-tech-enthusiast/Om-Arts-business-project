@@ -53,7 +53,7 @@ export default function Main() {
   const [isOrderFormOpen, setIsOrderFormOpen] = useState(false);
   const [isOrderSubmitted, setIsOrderSubmitted] = useState(false);
   const [orderDetails, setOrderDetails] = useState(null);
-  // const [IsdownloadCompleted, setIsdownloadCompleted] = useState(false)
+
 
   useEffect(() => {
     if (isAddressOpen || isOrderFormOpen) {
@@ -109,85 +109,92 @@ export default function Main() {
   };
 
 
-  const generatePDF = async () => {
-    // 1️⃣ Create isolated container (no layout shift)
-    const html2pdf = (await import("html2pdf.js")).default;
-    const container = document.createElement("div");
+ const generatePDF = async () => {
 
-    container.style.position = "fixed";
-    container.style.left = "-9999px";
-    container.style.top = "0";
-    container.style.width = "210mm";
-    container.style.visibility = "hidden";
-    container.style.pointerEvents = "none";
+  if (!window.html2pdf) {
+    console.error("html2pdf CDN not loaded");
+    return;
+  }
 
-    document.body.appendChild(container);
+  // 1️⃣ Create hidden container
+  const container = document.createElement("div");
 
-    const root = createRoot(container);
+  container.style.position = "fixed";
+  container.style.left = "-9999px";
+  container.style.top = "0";
+  container.style.width = "794px"; // A4 width in px
+  container.style.background = "#ffffff";
 
-    const total = cart.reduce(
-      (sum, item) => sum + item.price * item.qty,
-      0
+  document.body.appendChild(container);
+
+  const root = createRoot(container);
+
+  const total = cart.reduce(
+    (sum, item) => sum + item.price * item.qty,
+    0
+  );
+
+  // 2️⃣ Render template
+  flushSync(() => {
+    root.render(
+      <OrderSummaryTemplate
+        cart={cart}
+        orderDetails={orderDetails}
+        total={total}
+      />
     );
+  });
 
-    // 2️⃣ Render synchronously (no timeout needed)
-    flushSync(() => {
-      root.render(
-        <OrderSummaryTemplate
-          cart={cart}
-          orderDetails={orderDetails}
-          total={total}
-        />
-      );
-    });
+  // 3️⃣ Wait for DOM to fully render
+  await new Promise(resolve => setTimeout(resolve, 200));
 
-    try {
-      const element = container.firstElementChild;
+  try {
 
-      const opt = {
-        margin: [15, 0, 15, 0],
-        image: { type: "jpeg", quality: 0.98 },
-        html2canvas: {
-          scale: 2,
-          useCORS: true
-        },
-        jsPDF: {
-          unit: "mm",
-          format: "a4",
-          orientation: "portrait"
-        },
-        pagebreak: { mode: ["css", "legacy"] }
-      };
+    const element = container.firstElementChild;
+
+    const opt = {
+      margin: [10, 0, 10, 0],
+      filename: `${orderDetails?.name || "order"}-Order.pdf`,
+      image: { type: "jpeg", quality: 0.98 },
+
+      html2canvas: {
+        scale: 1.3,
+        useCORS: true,
+        scrollY: 0
+      },
+
+      jsPDF: {
+        unit: "mm",
+        format: "a4",
+        orientation: "portrait"
+      },
+
+      pagebreak: {
+        mode: ["css", "legacy"]
+      }
+    };
+
+    // 4️⃣ Generate PDF
+    await window.html2pdf()
+      .set(opt)
+      .from(element)
+      .toCanvas()
+      .toPdf()
+      .save();
+
+  } catch (err) {
+    console.error("PDF generation failed:", err);
+  } finally {
+
+    // 5️⃣ Cleanup
+    root.unmount();
+    document.body.removeChild(container);
+
+  }
+};
 
 
 
-      // 4️⃣ Generate blob (mobile-safe)
-      const pdfBlob = await html2pdf()
-        .from(element)
-        .set(opt)
-        .outputPdf("blob");
-
-      // 5️⃣ Manual download (no navigation jump)
-      const blobUrl = URL.createObjectURL(pdfBlob);
-
-      const link = document.createElement("a");
-      link.href = blobUrl;
-      link.download = `${orderDetails.name}-Order.pdf`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      URL.revokeObjectURL(blobUrl);
-  
-    } catch (err) {
-      console.error("PDF generation failed:", err);
-    } finally {
-      // 6️⃣ Clean up safely
-      root.unmount();
-      document.body.removeChild(container);
-
-    }
-  };
 
 
   return (
