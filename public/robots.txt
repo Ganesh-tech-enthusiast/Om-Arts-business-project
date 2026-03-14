@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://om-arts.netlify.app/sitemap.xml
+Sitemap: https://om-arts.in/sitemap.xml
