@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { CartSidebar } from './CartSidebar';
 import { Size1data, Size2data, Size3data, Size4data } from '../data/data';
 import { Mail, MapPin, Phone, X } from 'lucide-react';
@@ -37,7 +37,7 @@ const Modal = ({ isOpen, onClose, title, children }) => {
           <X size={24} />
         </button>
         <div className="p-8">
-          {title && <h2 className="text-2xl font-bold text-amber-600 dark:text-amber-500 mb-4 marathi-sans">{title}</h2>}
+          {title && <h3 className="text-2xl font-bold text-amber-600 dark:text-amber-500 mb-4 marathi-sans">{title}</h3>}
           {children}
         </div>
       </motion.div>
@@ -56,17 +56,17 @@ export default function Main() {
   const [orderDetails, setOrderDetails] = useState(null);
   // const [IsdownloadCompleted, setIsdownloadCompleted] = useState(false)
 
-useEffect(() => {
-  if (isAddressOpen || isOrderFormOpen) {
-    document.body.style.overflow = "hidden";
-  } else {
-    document.body.style.overflow = "auto";
-  }
+  useEffect(() => {
+    if (isAddressOpen || isOrderFormOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
 
-  return () => {
-    document.body.style.overflow = "auto";
-  };
-}, [isAddressOpen,isOrderFormOpen]);
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isAddressOpen, isOrderFormOpen]);
 
   const addToCart = (product, qty) => {
     setCart(prev => {
@@ -196,9 +196,9 @@ useEffect(() => {
       {/* Header */}
       <Header cart={cart} setIsAddressOpen={setIsAddressOpen} setIsCartOpen={setIsCartOpen} setIsMenuOpen={setIsMenuOpen} isMenuOpen={isMenuOpen} />
       <div className='bg-white dark:bg-slate-900 dark:text-white text-md  font-bold sans text-black overflow-hidden'>
-        <h1 className="animate-scroll [animation-duration:6s] md:[animation-duration:20s] py-4 mt-20 md:mt-23 text-nowrap">
+        <h3 className="animate-scroll [animation-duration:6s] md:[animation-duration:20s] py-4 mt-20 md:mt-23 text-nowrap">
           2026 साठी बूकिंग सुरू झाली आहे !
-        </h1>
+        </h3>
 
       </div>
       {/* --- Hero Section --- */}
@@ -215,13 +215,13 @@ useEffect(() => {
             <span className="inline-block py-1 px-3 rounded-full bg-amber-100 border border-amber-200 text-amber-800 dark:bg-amber-500/10 dark:border-amber-500/20 dark:text-amber-500 text-sm font-semibold mb-6 tracking-wider uppercase">
               || वक्रतुंड महाकाय सूर्यकोटि समप्रभ निर्विघ्नं कुरु मे देव सर्वकार्येषु सर्वदा ||
             </span>
-            <h1 className="text-5xl md:text-7xl marathi-yatra font-bold text-stone-900 dark:text-white leading-tight mb-6">
+            <h3 className="text-5xl md:text-7xl marathi-yatra font-bold text-stone-900 dark:text-white leading-tight mb-6">
               सर्व प्रकारच्या गणपती मूर्ती <br />
 
-            </h1>
-            <p className="mt-4 max-w-2xl text-xl text-stone-600 dark:text-gray-400 mx-auto mb-10">
-              पीओपि व शाडू मातीच्या गणेश मूर्ती बनविण्यात अग्रगण्य
-            </p>
+            </h3>
+            <h2 className="mt-4 max-w-2xl text-xl text-stone-600 dark:text-gray-400 mx-auto mb-10">
+              पीओपी व शाडू मातीच्या गणेश मूर्ती बनविण्यात अग्रगण्य. सुंदर, आकर्षक आणि पर्यावरणपूरक गणेश मूर्ती योग्य किमतीत उपलब्ध.
+            </h2>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="#collection"
@@ -251,7 +251,7 @@ useEffect(() => {
       <div id="collection" className="py-24 bg-stone-50 dark:bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-stone-900 dark:text-white mb-4">आमच्याकडील विविध मूर्ती </h2>
+            <h3 className="text-3xl md:text-4xl font-serif font-bold text-stone-900 dark:text-white mb-4">आमच्याकडील विविध मूर्ती </h3>
             <div className="w-24 h-1 bg-amber-600 mx-auto rounded-full" />
             <p className="mt-4 text-stone-600 dark:text-gray-400">आपली ऑर्डर ऑनलाइन स्वीकारली जाईल </p>
           </div>
@@ -309,18 +309,18 @@ useEffect(() => {
         </div>
       </div>
       {/* sizes section */}
-          <div className="flex w-full justify-evenly mb-8 items-center font-bold">
-            <a href="#collection"><Sizebtn id={1} label="6/9 इंच " activeSize={activeSize} setActiveSize={setActiveSize}/></a>
-            <a href="#collection"><Sizebtn id={2} label="1 फुट" activeSize={activeSize} setActiveSize={setActiveSize} /></a>
-            <a href="#collection"><Sizebtn id={3} label="1.25 / 1.5 फुट " activeSize={activeSize} setActiveSize={setActiveSize} /></a>
-            <a href="#collection"><Sizebtn id={4} label="2 फुट+" activeSize={activeSize} setActiveSize={setActiveSize} /></a>
-          </div>
+      <div className="flex w-full justify-evenly mb-8 items-center font-bold">
+        <a href="#collection"><Sizebtn id={1} label="6/9 इंच " activeSize={activeSize} setActiveSize={setActiveSize} /></a>
+        <a href="#collection"><Sizebtn id={2} label="1 फुट" activeSize={activeSize} setActiveSize={setActiveSize} /></a>
+        <a href="#collection"><Sizebtn id={3} label="1.25 / 1.5 फुट " activeSize={activeSize} setActiveSize={setActiveSize} /></a>
+        <a href="#collection"><Sizebtn id={4} label="2 फुट+" activeSize={activeSize} setActiveSize={setActiveSize} /></a>
+      </div>
 
       <Footer />
       {/* address modals and others */}
       {/* Address Modal here */}
       <Modal isOpen={isAddressOpen} onClose={() => setIsAddressOpen(false)} title="आमच्या कार्यशाळेला भेट द्या ">
-       <div className="space-y-4 text-stone-600 dark:text-gray-300 font-light">
+        <div className="space-y-4 text-stone-600 dark:text-gray-300 font-light">
           <div className="flex items-start gap-4 mb-4">
             <div className="bg-stone-100 dark:bg-slate-800 p-2 rounded-lg text-amber-600 dark:text-amber-500">
               <MapPin size={24} />
