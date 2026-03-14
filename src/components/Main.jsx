@@ -15,8 +15,9 @@ import html2pdf from 'html2pdf.js';
 
 const BUSINESS_ADDRESS = {
   shop: "ओम आर्ट्स - गणपती मूर्ती कार्यशाळा ",
-  street: "सोनगाव रोड, कोल्हार भागवतीनगर तालुका:राहता , जिल्हा:अहिल्यानगर",
-  city: "कोल्हार , महाराष्ट्र ",
+  street: "कोल्हार भागवतीनगर,सोनगाव रोड, तालुका:राहता , जिल्हा:अहिल्यानगर",
+
+  city: "कोल्हार, महाराष्ट्र ",
   pin: "413710",
   phone: "+91 9822397846 , +91 8010072112",
   email: "ganeshwakchaure801@gmail.com"
@@ -177,7 +178,7 @@ useEffect(() => {
       document.body.removeChild(link);
 
       URL.revokeObjectURL(blobUrl);
-      setIsdownloadCompleted(true)
+  
     } catch (err) {
       console.error("PDF generation failed:", err);
     } finally {
