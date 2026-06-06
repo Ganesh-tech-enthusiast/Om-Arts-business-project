@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AnimatePresence, motion} from "framer-motion";
+import { AnimatePresence, motion as Motion} from "framer-motion";
 import { Check, Download, Loader2} from "lucide-react";
 import { cn } from "../lib/utils";
 
@@ -44,7 +44,7 @@ export default function Downloadbtn({onDownload}) {
       )}
 
       <AnimatePresence mode="wait" initial={false}>
-        <motion.span
+        <Motion.span
           key={status}
           initial={{ opacity: 0, y: -15, filter: "blur(4px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -60,7 +60,7 @@ export default function Downloadbtn({onDownload}) {
            )} 
            
           {status === "downloaded" && (
-            <motion.span
+            <Motion.span
               className="flex items-center gap-2"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
@@ -70,7 +70,7 @@ export default function Downloadbtn({onDownload}) {
                 <Check size={16} strokeWidth={3} />
               </div>
               <span>Download complete</span>
-            </motion.span>
+            </Motion.span>
           )}
 
           {status === "processing" && (
@@ -88,7 +88,7 @@ export default function Downloadbtn({onDownload}) {
             </span>
           )} 
           
-        </motion.span>
+        </Motion.span>
       </AnimatePresence>
     </button>
   );

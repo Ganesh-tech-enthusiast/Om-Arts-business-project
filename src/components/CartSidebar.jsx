@@ -10,7 +10,7 @@ const CartSidebar = ({ isOpen, onClose, cartItems, updateItemQty, removeItem, on
       {isOpen && (
         <>
           {/* Backdrop */}
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -18,12 +18,12 @@ const CartSidebar = ({ isOpen, onClose, cartItems, updateItemQty, removeItem, on
             className="fixed inset-0 bg-stone-900/40 dark:bg-black/60 backdrop-blur-sm z-50"
           />
           {/* Sidebar */}
-          <motion.div
+          <Motion.div
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-            className="fixed top-0 right-0 h-full w-full md:w-150 bg-stone-50 dark:bg-slate-900 border-l border-stone-200 dark:border-slate-800 shadow-2xl z-50 flex flex-col"
+            className="fixed top-0 right-0 h-full w-full max-w-[34rem] bg-stone-50 dark:bg-slate-900 border-l border-stone-200 dark:border-slate-800 shadow-2xl z-50 flex flex-col"
           >
             <div className="p-5 border-b border-stone-200 dark:border-slate-800 flex items-center justify-between bg-white/50 dark:bg-slate-900 backdrop-blur-sm">
               <h2 className="text-xl font-bold text-amber-600 dark:text-amber-500 font-serif flex items-center gap-2">
@@ -42,7 +42,7 @@ const CartSidebar = ({ isOpen, onClose, cartItems, updateItemQty, removeItem, on
                 </div>
               ) : (
                 cartItems.map(item => (
-                  <motion.div
+                  <Motion.div
                     layout
                     key={item.id}
                     className="bg-white dark:bg-slate-800/50 rounded-xl flex flex-col  border border-stone-200 dark:border-slate-700/50 shadow-sm dark:shadow-none"
@@ -78,7 +78,7 @@ const CartSidebar = ({ isOpen, onClose, cartItems, updateItemQty, removeItem, on
                     <div className='bg-blue-400 text-center rounded-b-xl font-semibold dark:bg-blue-700'>
                       {item.qty} Unit Ordered
                     </div>
-                  </motion.div>
+                  </Motion.div>
                 ))
               )}
             </div>
@@ -97,7 +97,7 @@ const CartSidebar = ({ isOpen, onClose, cartItems, updateItemQty, removeItem, on
                 </button>
               </div>
             )}
-          </motion.div>
+          </Motion.div>
         </>
       )}
     </AnimatePresence>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion as Motion } from "framer-motion";
 import { Check, Loader2, Truck } from "lucide-react";
 import { cn } from "../lib/utils";
 
@@ -49,7 +49,7 @@ export default function StatusButton({ OrderedAlready, qty, product, addToCart, 
       )}
 
       <AnimatePresence mode="wait" initial={false}>
-        <motion.span
+        <Motion.span
           key={status}
           initial={{ opacity: 0, y: -15, filter: "blur(4px)" }}
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
@@ -58,7 +58,7 @@ export default function StatusButton({ OrderedAlready, qty, product, addToCart, 
           className="flex items-center justify-center gap-2"
         >
           {status === "Ordered" && (
-            <motion.span
+            <Motion.span
               className="flex items-center gap-2"
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
@@ -68,7 +68,7 @@ export default function StatusButton({ OrderedAlready, qty, product, addToCart, 
                 <Check size={16} strokeWidth={3} />
               </div>
               <span>{qty == 1 ? `${qty} Unit Ordered` : `${qty} Units Ordered`}</span>
-            </motion.span>
+            </Motion.span>
           )}
 
           {status === "loading" && (
@@ -85,11 +85,11 @@ export default function StatusButton({ OrderedAlready, qty, product, addToCart, 
               {OrderedAlready ? "Order More" : "Order Now"}
             </span>
           )}
-        </motion.span>
+        </Motion.span>
       </AnimatePresence>
 
       {status === "loading" && (
-        <motion.div
+        <Motion.div
           className="absolute bottom-0 left-0 h-0.5 bg-blue-500"
           initial={{ width: "0%" }}
           animate={{ width: "100%" }}

@@ -1,7 +1,7 @@
-import { useState, useEffect, lazy, Suspense } from 'react';
+import { useState, useEffect, lazy, Suspense, useRef } from 'react';
 const CartSidebar = lazy(()=> import('./CartSidebar'));
 // import { Size1data, Size2data, Size3data, Size4data } from '../data/data';
-import { Loader, Mail, MapPin, Phone, X } from 'lucide-react';
+import { ArrowUp, Loader, Mail, MapPin, Phone, X } from 'lucide-react';
 import { motion as Motion } from 'framer-motion';
 import { ProductCard } from './ProductCard';
 import Sizebtn from './Sizebtn';
@@ -58,6 +58,8 @@ export default function Main() {
   const [cat2, setCat2] = useState ([]);
   const [cat3, setCat3] = useState ([]);
   const [cat4, setCat4] = useState ([]);
+  const [showProductsTopButton, setShowProductsTopButton] = useState(false);
+  const collectionRef = useRef(null);
 
   useEffect(() => {
     if (isAddressOpen || isOrderFormOpen) {
@@ -102,6 +104,28 @@ export default function Main() {
     test();
    },[]);
 
+  useEffect(() => {
+    const handleScroll = () => {
+      const collection = collectionRef.current;
+      if (!collection) return;
+
+      const rect = collection.getBoundingClientRect();
+      const hasScrollableCollection = rect.height > window.innerHeight;
+      const isInsideLowerCollection = rect.top < -240 && rect.bottom > window.innerHeight;
+
+      setShowProductsTopButton(hasScrollableCollection && isInsideLowerCollection);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, [activeSize, cat1.length, cat2.length, cat3.length, cat4.length]);
+
   const updateItemQty = (id, newQty) => {
     if (newQty < 1) return removeItem(id);
     setCart(prev => prev.map(item => item.id === id ? { ...item, qty: newQty } : item));
@@ -120,6 +144,10 @@ export default function Main() {
   const handleOrderSubmit = (details) => {
     setOrderDetails(details);
     setIsOrderSubmitted(true);
+  };
+
+  const scrollToProductsTop = () => {
+    collectionRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
 
@@ -271,7 +299,7 @@ export default function Main() {
       </div>
 
       {/* --- Product Collection --- */}
-      <div id="collection" className="py-10 bg-stone-50 dark:bg-slate-950">
+      <div id="collection" ref={collectionRef} className="scroll-mt-24 md:scroll-mt-28 py-10 bg-stone-50 dark:bg-slate-950">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-8">
             <h3 className="text-3xl md:text-4xl font-serif font-bold text-stone-900 dark:text-white mb-4">आमच्याकडील विविध मूर्ती </h3>
@@ -287,7 +315,7 @@ export default function Main() {
           </div>
 
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {activeSize === 1 && cat1.map((product) => (
               <Motion.div
                 key={product.id}
@@ -334,6 +362,17 @@ export default function Main() {
       </div>
 
       <Footer />
+      {showProductsTopButton && (
+        <button
+          type="button"
+          onClick={scrollToProductsTop}
+          name="back to products top"
+          className="fixed bottom-6 right-4 sm:right-6 z-40 inline-flex items-center gap-2 rounded-full bg-amber-600 px-4 py-3 text-sm font-bold text-white shadow-lg shadow-amber-900/25 transition-all hover:bg-amber-700 active:scale-95 dark:bg-amber-500 dark:text-slate-950 dark:hover:bg-amber-400"
+        >
+          <ArrowUp size={18} />
+          <span className="hidden sm:inline">Back to Products</span>
+        </button>
+      )}
       {/* address modals and others */}
       {/* Address Modal here */}
       <Modal isOpen={isAddressOpen} onClose={() => setIsAddressOpen(false)} title="आमच्या कार्यशाळेला भेट द्या ">

@@ -5,6 +5,8 @@ import AddModel from "./pages/admin/AddModel";
 import UpdateModel from "./pages/admin/UpdateModel";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
+import AboutUs from "./pages/AboutUs";
+import ContactUs from "./pages/ContactUs";
 
 function App() {
   return (
@@ -12,6 +14,8 @@ function App() {
       <Routes>
         {/* Public Website */}
         <Route path="/" element={<Main />} />
+        <Route path="/about-us" element={<AboutUs />} />
+        <Route path="/contact-us" element={<ContactUs />} />
 
         {/* Admin Login */}
         <Route
