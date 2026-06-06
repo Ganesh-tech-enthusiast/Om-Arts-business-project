@@ -58,6 +58,7 @@ export default function Main() {
   const [cat2, setCat2] = useState ([]);
   const [cat3, setCat3] = useState ([]);
   const [cat4, setCat4] = useState ([]);
+  const [isCatalogueLoading, setIsCatalogueLoading] = useState(true);
   const [showProductsTopButton, setShowProductsTopButton] = useState(false);
   const collectionRef = useRef(null);
 
@@ -77,11 +78,11 @@ export default function Main() {
     setCart(prev => {
       let updatedCart;
 
-      const existing = prev.find(item => item.id === product.id);
+      const existing = prev.find(item => item.model_number === product.model_number);
 
       if (existing) {
         updatedCart = prev.map(item =>
-          item.id === product.id
+          item.model_number === product.model_number
             ? { ...item, qty: item.qty + qty }
             : item
         );
@@ -89,17 +90,22 @@ export default function Main() {
         updatedCart = [...prev, { ...product, qty }];
       }
 
-      return updatedCart.sort((a, b) => a.id - b.id);
+      return updatedCart.sort((a, b) => a.model_number - b.model_number);
     });
   };
 
    useEffect(() => {
     async function test() {
-      const data = await getCatalogue();
-      setCat1(data.filter((model) => Number(model.category) === 1));
-      setCat2(data.filter((model) => Number(model.category) === 2));
-      setCat3(data.filter((model) => Number(model.category) === 3));
-      setCat4(data.filter((model) => Number(model.category) === 4));
+      try {
+        setIsCatalogueLoading(true);
+        const data = await getCatalogue();
+        setCat1(data.filter((model) => Number(model.category) === 1));
+        setCat2(data.filter((model) => Number(model.category) === 2));
+        setCat3(data.filter((model) => Number(model.category) === 3));
+        setCat4(data.filter((model) => Number(model.category) === 4));
+      } finally {
+        setIsCatalogueLoading(false);
+      }
     }
     test();
    },[]);
@@ -315,8 +321,14 @@ export default function Main() {
           </div>
 
 
-          <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {activeSize === 1 && cat1.map((product) => (
+          {isCatalogueLoading ? (
+            <div className="flex min-h-64 flex-col items-center justify-center gap-3 rounded-lg border border-stone-200 bg-white/80 py-16 text-stone-700 dark:border-white/10 dark:bg-slate-900/70 dark:text-slate-200">
+              <Loader className="animate-spin text-amber-600 dark:text-amber-500" size={34} />
+              <p className="text-base font-semibold">loading catalogue</p>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {activeSize === 1 && cat1.map((product) => (
               <Motion.div
                 key={product.id}
                 initial={{ opacity: 0, y: 20 }}
@@ -357,7 +369,8 @@ export default function Main() {
               </Motion.div>
             ))}
 
-          </div>
+            </div>
+          )}
         </div>
       </div>
 
