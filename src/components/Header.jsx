@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { MapPin, Truck, Menu, X, Sun, Moon } from 'lucide-react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
-// import logo from '../assets/logo.png'
 import newlogo from '../assets/newlogo.svg'
 
 

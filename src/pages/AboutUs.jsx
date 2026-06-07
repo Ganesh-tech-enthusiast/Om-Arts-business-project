@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 
 const CartSidebar = lazy(() => import('../components/CartSidebar'));
 
-const businessCardImage = "https://res.cloudinary.com/did8mktr3/image/upload/v1780724671/Business_card_nl1p1a.png";
+const businessCardImage = "https://res.cloudinary.com/did8mktr3/image/upload/v1780821407/Business_card_nl1p1a.webp";
 
 const Modal = ({ isOpen, onClose, title, children }) => {
   if (!isOpen) return null;
