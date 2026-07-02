@@ -4,7 +4,8 @@ import { supabase } from "../lib/supabase";
 export const getCatalogue = async () => {
   const { data, error } = await supabase
     .from("catalogue")
-    .select("*");
+    .select("*")
+    .order("model_number", { ascending: true });
 
   if (error) {
     console.error(error);
