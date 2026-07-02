@@ -49,6 +49,10 @@ export const ProductCard = ({ product, onAddToCart }) => {
           <div className="absolute top-3 right-3 bg-white/95 dark:bg-white text-stone-900 dark:text-black text-xs font-bold px-2 py-1 rounded-full flex items-center gap-1 shadow-sm">
             {product.size}
           </div>
+          <div className='absolute top-3 left-3 bg-white rounded-xl px-2 py-1 text-stone-900 font-bold text-xs'>
+            Model No: {product.model_number}
+
+          </div>
           
         </div>
 
